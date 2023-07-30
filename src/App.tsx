@@ -1,13 +1,13 @@
-import favicon from "/favicon.svg";
-import "./App.scss";
+import { API_RESPONSE_GOALS } from "./api/goals";
+import { Logo } from "./components/Logo";
+import { Goals } from "./containers/Goals";
+import { formattedData } from "./utils";
 
 function App() {
   return (
     <>
-      <div>
-        <img src={favicon} className="logo" alt="Logo" />
-      </div>
-      <h1>Goal Manager</h1>
+      <Logo />
+      <Goals data={formattedData(API_RESPONSE_GOALS[0].data)} />
     </>
   );
 }
