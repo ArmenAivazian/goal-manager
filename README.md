@@ -41,8 +41,8 @@
 
 ### Features
 
-- in progress...
+- MVP
 
 ### Tech Improvements
 
-- in progress...
+- Sort imports
