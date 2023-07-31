@@ -1,30 +1,46 @@
 import classes from "./Goals.module.scss";
-import { GoalsProps } from "./Goals.types";
+import { Goal, GoalsProps } from "./Goals.types";
 import { Item } from "./components/Item";
 
-export function Goals({ data }: GoalsProps) {
-  if (!Array.isArray(data)) {
-    if (!data.children) return <Item {...data} />;
+export function Goals({ goals, setGoals, setFocusMode }: GoalsProps) {
+  const goalParams = { setGoals, setFocusMode };
+
+  function onDbClick(goal: Goal) {
+    return () => {
+      setFocusMode(true);
+      setGoals(goal);
+    };
+  }
+
+  if (!Array.isArray(goals)) {
+    if (!goals.children) return <Item {...goals} />;
 
     return (
       <>
-        <Item {...data} />
-        <Goals data={data.children} />
+        <Item {...goals} />
+        <Goals goals={goals.children} {...goalParams} />
       </>
     );
   }
 
   return (
     <div className={classes.line}>
-      {data.map(({ name, children, progress, importance }) => {
+      {goals.map((goal) => {
+        const { name, children, progress, importance } = goal;
+        const hasChildren = !!children?.length;
+
         return (
           <div
             key={name}
             style={{ width: importance ? `${importance * 100}%` : "100%" }}
           >
-            <Item name={name} progress={progress} />
+            <Item
+              name={name}
+              progress={progress}
+              {...(hasChildren && { onDbClick: onDbClick(goal) })}
+            />
 
-            {!!children?.length && <Goals data={children} />}
+            {!!hasChildren && <Goals goals={children} {...goalParams} />}
           </div>
         );
       })}

@@ -6,5 +6,7 @@ export interface Goal {
 }
 
 export interface GoalsProps {
-  data: Goal | Goal[];
+  goals: Goal | Goal[];
+  setGoals: (value: Goal) => void;
+  setFocusMode: (value: boolean) => void;
 }

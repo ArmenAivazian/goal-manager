@@ -8,6 +8,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     position: relative;
+    cursor: pointer;
 
     &:not(:last-of-type) {
         margin-bottom: 0.5em;

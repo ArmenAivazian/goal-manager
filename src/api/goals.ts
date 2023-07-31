@@ -1,6 +1,5 @@
 export const API_RESPONSE_GOALS = [
   {
-    id: 1,
     data: {
       name: "main goal",
       children: [
@@ -11,9 +10,25 @@ export const API_RESPONSE_GOALS = [
             {
               name: "second level children 1",
               children: [
-                { name: "third level 1", progress: 0.5, importance: 0.8 },
-                { name: "third level 2", importance: 0.1, progress: 1 },
-                { name: "third level 3", importance: 0.1 },
+                {
+                  name: "third level 1",
+                  importance: 0.8,
+                  children: [
+                    {
+                      name: "fourth level 1",
+                      progress: 0.5,
+                    },
+                  ],
+                },
+                {
+                  name: "third level 2",
+                  importance: 0.1,
+                  progress: 1,
+                },
+                {
+                  name: "third level 3",
+                  importance: 0.1,
+                },
               ],
             },
           ],
@@ -27,11 +42,8 @@ export const API_RESPONSE_GOALS = [
     },
   },
   {
-    id: 2,
     data: {
       name: "test goal for feature",
-      importance: 1,
-      progress: 1,
     },
   },
 ];
