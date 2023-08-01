@@ -1,6 +1,6 @@
-import { Goal } from "../containers/Goals/Goals.types";
+import { GoalType } from "../types/goal";
 
-function calculateProgress(data: Goal): number {
+function calculateProgress(data: GoalType): number {
   if ("progress" in data) return data.progress!;
 
   if ("children" in data && Array.isArray(data.children)) {
@@ -25,7 +25,9 @@ function calculateProgress(data: Goal): number {
   return data.progress || 0;
 }
 
-export function formattedData(data: Goal): Goal {
+export function formattedGoal(data?: GoalType): GoalType | null {
+  if (!data) return null;
+
   calculateProgress(data);
 
   return data;

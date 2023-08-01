@@ -1,6 +1,6 @@
 # 🎯 Goal Manager
 
-#### Project Status: `👀 Alpha testing`
+#### Project Status: `👨‍💻 In Progress`
 
 **Goal Manager** will help you achieve your goals:
 1. Visualize the main goal.

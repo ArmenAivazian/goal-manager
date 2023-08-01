@@ -1,30 +1,48 @@
-import { API_RESPONSE_GOALS } from "./api/goals";
-import { Logo } from "./components/Logo";
-import { Goals } from "./containers/Goals";
-import { formattedData } from "./utils";
+import { Goal } from "./containers/Goal";
+import { formattedGoal, getGoals } from "./utils";
 import classes from "./App.module.scss";
 import { useState } from "react";
 
+import { Header } from "./components/Header";
+import { GoalType } from "./types/goal";
+import { GoalsList } from "./components/GoalsList";
+
 function App() {
-  const data = formattedData(API_RESPONSE_GOALS[0].data);
+  const [goals, setGoals] = useState(getGoals());
+  const [goal, setGoal] = useState<GoalType | null>(formattedGoal(goals[0]));
+  const [selectedGoal, setSelectedGoal] = useState<GoalType | null>(null);
+  const [isListGoalsPage, setIsListGoalsPage] = useState(!goals?.length);
 
-  const [goals, setGoals] = useState(data);
-  const [focusMode, setFocusMode] = useState(false);
-
-  function handleBackButtonClick() {
-    setFocusMode(false);
-    setGoals(formattedData(data));
-  }
+  const shownButtonBack = !!(selectedGoal && !isListGoalsPage);
 
   return (
     <>
-      <nav className={classes.header}>
-        <Logo />
-        {focusMode && <button onClick={handleBackButtonClick}>Back</button>}
-      </nav>
-      <div className={classes.wrapper}>
-        <Goals goals={goals} setGoals={setGoals} setFocusMode={setFocusMode} />
-      </div>
+      <Header
+        goals={goals}
+        goal={goal}
+        isListGoalsPage={isListGoalsPage}
+        shownButtonBack={shownButtonBack}
+        setGoals={setGoals}
+        setGoal={setGoal}
+        setIsListGoalsPage={setIsListGoalsPage}
+        onBackButtonClick={() => setSelectedGoal(null)}
+      />
+      {isListGoalsPage ? (
+        <GoalsList
+          goals={goals}
+          setGoal={setGoal}
+          setSelectedGoal={setSelectedGoal}
+          setIsListGoalsPage={setIsListGoalsPage}
+        />
+      ) : (
+        <div className={classes.wrapper}>
+          <Goal
+            goal={goal!}
+            selectedGoal={selectedGoal}
+            setSelectedGoal={setSelectedGoal}
+          />
+        </div>
+      )}
     </>
   );
 }
