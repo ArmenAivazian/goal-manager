@@ -61,6 +61,11 @@ button {
   }
 }
 
+input {
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

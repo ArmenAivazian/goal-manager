@@ -4,6 +4,7 @@ import { HeaderProps } from "./Header.types";
 import { Logo } from "./components/Logo";
 import { useContextSelector } from "use-context-selector";
 import { GoalsContext } from "../../contexts/Goals";
+import { getUniqueKey } from "../../utils";
 
 export function Header({
   goal,
@@ -13,19 +14,21 @@ export function Header({
   setIsListGoalsPage,
   setGoal,
 }: HeaderProps) {
-  const [goals, setGoals] = useContextSelector(GoalsContext, (goals) => goals);
+  const setGoals = useContextSelector(GoalsContext, (goals) => goals[1]);
 
   const [inputValue, setInputValue] = useState("");
 
   function handleCreateButtonClick() {
-    const newGoal = { name: inputValue };
-    const newList = [...goals, newGoal];
+    const newGoal = { id: getUniqueKey(), name: inputValue };
 
-    setGoals(newList);
+    setGoals((prevGoals) => {
+      const newList = [...prevGoals, newGoal];
+      localStorage.setItem("goals", JSON.stringify(newList));
+      return newList;
+    });
     setGoal(newGoal);
     setIsListGoalsPage(false);
-
-    localStorage.setItem("goals", JSON.stringify(newList));
+    setInputValue("");
   }
 
   return (

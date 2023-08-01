@@ -12,6 +12,7 @@ export function Goal({ goal, selectedGoal, setSelectedGoal }: GoalProps) {
     return (
       <>
         <Item {...currentGoal} />
+
         <Goal goal={currentGoal.children} {...goalParams} />
       </>
     );
@@ -20,7 +21,7 @@ export function Goal({ goal, selectedGoal, setSelectedGoal }: GoalProps) {
   return (
     <div className={classes.line}>
       {currentGoal.map((item) => {
-        const { name, children, progress, importance } = item;
+        const { id, name, children, progress, importance } = item;
         const hasChildren = !!children?.length;
 
         return (
@@ -29,6 +30,7 @@ export function Goal({ goal, selectedGoal, setSelectedGoal }: GoalProps) {
             style={{ width: importance ? `${importance * 100}%` : "100%" }}
           >
             <Item
+              id={id}
               name={name}
               progress={progress}
               {...(hasChildren && { onDbClick: () => setSelectedGoal(item) })}

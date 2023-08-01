@@ -1,0 +1,25 @@
+.wrapper {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    min-width: 100vw;
+    height: 30%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-width: 0;
+    border-radius: 15px 15px 0 0;
+    box-sizing: border-box;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.line {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    min-width: 100%;
+}
+
+.input {
+    height: 37px;
+    flex: 0 1 100%;
+}
