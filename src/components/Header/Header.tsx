@@ -2,17 +2,19 @@ import { useState } from "react";
 import classes from "./Header.module.scss";
 import { HeaderProps } from "./Header.types";
 import { Logo } from "./components/Logo";
+import { useContextSelector } from "use-context-selector";
+import { GoalsContext } from "../../contexts/Goals";
 
 export function Header({
   goal,
   isListGoalsPage,
   shownButtonBack,
-  goals,
   onBackButtonClick,
   setIsListGoalsPage,
-  setGoals,
   setGoal,
 }: HeaderProps) {
+  const [goals, setGoals] = useContextSelector(GoalsContext, (goals) => goals);
+
   const [inputValue, setInputValue] = useState("");
 
   function handleCreateButtonClick() {
@@ -36,7 +38,7 @@ export function Header({
       )}
       {shownButtonBack && <button onClick={onBackButtonClick}>Back</button>}
       {isListGoalsPage && (
-        <div className={classes.button}>
+        <form className={classes.create} onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
             name="create-goal"
@@ -45,7 +47,7 @@ export function Header({
             onChange={({ target: { value } }) => setInputValue(value)}
           />
           <button onClick={handleCreateButtonClick}>Create</button>
-        </div>
+        </form>
       )}
     </header>
   );

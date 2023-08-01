@@ -1,14 +1,17 @@
+import { useContextSelector } from "use-context-selector";
 import { GoalType } from "../../types/goal";
 import { formattedGoal } from "../../utils";
 import classes from "./GoalsList.module.scss";
 import { GoalsListProps } from "./GoalsList.types";
+import { GoalsContext } from "../../contexts/Goals";
 
 export function GoalsList({
-  goals,
   setGoal,
   setSelectedGoal,
   setIsListGoalsPage,
 }: GoalsListProps) {
+  const goals = useContextSelector(GoalsContext, (goals) => goals[0]);
+
   function handleGoalButtonClick(goal: GoalType) {
     setGoal(goal);
     setSelectedGoal(null);
