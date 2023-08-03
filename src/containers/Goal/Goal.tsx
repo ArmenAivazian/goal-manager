@@ -1,10 +1,15 @@
+import { useContextSelector } from "use-context-selector";
 import classes from "./Goal.module.scss";
 import { GoalProps } from "./Goal.types";
 import { Item } from "./components/Item";
+import { GoalContext } from "../../contexts/Goal";
 
 export function Goal({ goal, selectedGoal, setSelectedGoal }: GoalProps) {
-  const currentGoal = selectedGoal || goal;
-  const goalParams = { setSelectedGoal };
+  const initGoal = useContextSelector(GoalContext, (goal) => goal[0]);
+
+  const currentGoal = selectedGoal || goal || initGoal;
+
+  if (!currentGoal) return <></>;
 
   if (!Array.isArray(currentGoal)) {
     if (!currentGoal.children) return <Item {...currentGoal} />;
@@ -13,7 +18,7 @@ export function Goal({ goal, selectedGoal, setSelectedGoal }: GoalProps) {
       <>
         <Item {...currentGoal} />
 
-        <Goal goal={currentGoal.children} {...goalParams} />
+        <Goal goal={currentGoal.children} setSelectedGoal={setSelectedGoal} />
       </>
     );
   }
@@ -26,7 +31,7 @@ export function Goal({ goal, selectedGoal, setSelectedGoal }: GoalProps) {
 
         return (
           <div
-            key={name}
+            key={id}
             style={{ width: importance ? `${importance * 100}%` : "100%" }}
           >
             <Item
@@ -36,7 +41,9 @@ export function Goal({ goal, selectedGoal, setSelectedGoal }: GoalProps) {
               {...(hasChildren && { onDbClick: () => setSelectedGoal(item) })}
             />
 
-            {!!hasChildren && <Goal goal={children} {...goalParams} />}
+            {!!hasChildren && (
+              <Goal goal={children} setSelectedGoal={setSelectedGoal} />
+            )}
           </div>
         );
       })}

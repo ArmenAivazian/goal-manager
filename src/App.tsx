@@ -7,7 +7,6 @@ import { GoalType } from "./types/goal";
 import { GoalsList } from "./components/GoalsList";
 
 function App() {
-  const [goal, setGoal] = useState<GoalType | null>(null);
   const [selectedGoal, setSelectedGoal] = useState<GoalType | null>(null);
   const [isListGoalsPage, setIsListGoalsPage] = useState(true);
 
@@ -16,27 +15,25 @@ function App() {
   return (
     <>
       <Header
-        goal={goal}
         isListGoalsPage={isListGoalsPage}
         shownButtonBack={shownButtonBack}
-        setGoal={setGoal}
         setIsListGoalsPage={setIsListGoalsPage}
         onBackButtonClick={() => setSelectedGoal(null)}
       />
       {isListGoalsPage ? (
         <GoalsList
-          setGoal={setGoal}
           setSelectedGoal={setSelectedGoal}
           setIsListGoalsPage={setIsListGoalsPage}
         />
       ) : (
-        <div className={classes.wrapper}>
-          <Goal
-            goal={goal!}
-            selectedGoal={selectedGoal}
-            setSelectedGoal={setSelectedGoal}
-          />
-        </div>
+        <>
+          <div className={classes.wrapper}>
+            <Goal
+              selectedGoal={selectedGoal}
+              setSelectedGoal={setSelectedGoal}
+            />
+          </div>
+        </>
       )}
     </>
   );

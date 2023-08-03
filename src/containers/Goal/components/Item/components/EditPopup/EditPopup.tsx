@@ -1,22 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import classes from "./EditPopup.module.scss";
-import { EditPopupProps } from "./EditPopup.types";
+import { Action, EditPopupProps } from "./EditPopup.types";
 import { useContextSelector } from "use-context-selector";
-import { GoalsContext } from "../../../../../../contexts/Goals";
-import { getUpdatedGoals } from "./utils";
+import { GoalContext } from "../../../../../../contexts/Goal";
+import { getUpdatedGoal, updateGoal } from "./utils";
+import { Field } from "./components/Field";
 
-export function EditPopup({ id, name, setGoalName, onClose }: EditPopupProps) {
-  const setGoals = useContextSelector(GoalsContext, (goals) => goals[1]);
+export function EditPopup({ id, name, onClose }: EditPopupProps) {
+  const setGoal = useContextSelector(GoalContext, (goal) => goal[1]);
 
-  const [inputValue, setInputValue] = useState(name);
-
-  function handleEditName() {
-    setGoalName(inputValue);
-    setGoals((prevGoals) => {
-      const newGoals = getUpdatedGoals(prevGoals, id, inputValue);
-      localStorage.setItem("goals", JSON.stringify(newGoals));
-      return newGoals;
-    });
+  function modifyGoal(action: Action) {
+    return (newValue: string) => {
+      setGoal((prevGoal) => {
+        if (!prevGoal) return prevGoal;
+        const newGoal = getUpdatedGoal(action, prevGoal, id, newValue);
+        updateGoal(prevGoal, newGoal);
+        return newGoal;
+      });
+    };
   }
 
   useEffect(() => {
@@ -28,18 +29,18 @@ export function EditPopup({ id, name, setGoalName, onClose }: EditPopupProps) {
 
   return (
     <dialog className={classes.wrapper} open>
-      <form className={classes.line} onSubmit={(e) => e.preventDefault()}>
-        <label htmlFor="goal-name">Name:</label>
-        <input
-          id="goal-name"
-          type="text"
-          name="create-goal"
-          className={classes.input}
-          value={inputValue}
-          onChange={({ target: { value } }) => setInputValue(value)}
-        />
-        <button onClick={handleEditName}>Edit</button>
-      </form>
+      <Field
+        label="Name"
+        buttonName="Edit"
+        initValue={name}
+        onSubmit={modifyGoal("edit")}
+      />
+      <Field
+        label="Add sub-goal"
+        buttonName="Add"
+        onSubmit={modifyGoal("add")}
+        clearAfterSubmit
+      />
     </dialog>
   );
 }

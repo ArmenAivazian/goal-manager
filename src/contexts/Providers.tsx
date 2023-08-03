@@ -1,11 +1,11 @@
 import { ReactNode, useState } from "react";
-import { GoalsContext } from "./Goals";
-import { getGoals } from "../utils";
+import { GoalContext } from "./Goal";
+import { GoalType } from "../types/goal";
 
 export function ContextProviders({ children }: { children: ReactNode }) {
   return (
-    <GoalsContext.Provider value={useState(getGoals())}>
+    <GoalContext.Provider value={useState<GoalType | null>(null)}>
       {children}
-    </GoalsContext.Provider>
+    </GoalContext.Provider>
   );
 }

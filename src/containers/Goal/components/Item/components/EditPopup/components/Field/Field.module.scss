@@ -1,0 +1,19 @@
+.line {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    min-width: 100%;
+
+    &:not(:last-of-type) {
+        margin-bottom: 0.5em;
+    }
+}
+
+.label {
+    min-width: max-content;
+}
+
+.input {
+    height: 37px;
+    flex: 0 1 100%;
+}

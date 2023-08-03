@@ -11,15 +11,3 @@
     box-sizing: border-box;
     background-color: rgba(128, 128, 128, 0.5);
 }
-
-.line {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-    min-width: 100%;
-}
-
-.input {
-    height: 37px;
-    flex: 0 1 100%;
-}

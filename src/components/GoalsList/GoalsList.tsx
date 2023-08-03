@@ -1,16 +1,15 @@
 import { useContextSelector } from "use-context-selector";
 import { GoalType } from "../../types/goal";
-import { formattedGoal } from "../../utils";
+import { formattedGoal, getGoals } from "../../utils";
 import classes from "./GoalsList.module.scss";
 import { GoalsListProps } from "./GoalsList.types";
-import { GoalsContext } from "../../contexts/Goals";
+import { GoalContext } from "../../contexts/Goal";
 
 export function GoalsList({
-  setGoal,
   setSelectedGoal,
   setIsListGoalsPage,
 }: GoalsListProps) {
-  const goals = useContextSelector(GoalsContext, (goals) => goals[0]);
+  const setGoal = useContextSelector(GoalContext, (goal) => goal[1]);
 
   function handleGoalButtonClick(goal: GoalType) {
     setGoal(goal);
@@ -20,7 +19,7 @@ export function GoalsList({
 
   return (
     <div className={classes.wrapper}>
-      {goals.map((goal) => {
+      {getGoals().map((goal) => {
         const fullData = formattedGoal(goal);
 
         if (!fullData) return <></>;
@@ -31,7 +30,7 @@ export function GoalsList({
         return (
           <button
             className={classes.button}
-            key={name}
+            key={goal.id}
             onClick={() => handleGoalButtonClick(fullData)}
           >
             {`${name} (${percents})`}

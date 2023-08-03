@@ -1,1 +1,2 @@
-export { getUpdatedGoals } from "./getUpdatedGoals";
+export { getUpdatedGoal } from "./getUpdatedGoal";
+export { updateGoal } from "./updateGoal";

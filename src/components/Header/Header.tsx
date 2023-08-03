@@ -2,30 +2,24 @@ import { useState } from "react";
 import classes from "./Header.module.scss";
 import { HeaderProps } from "./Header.types";
 import { Logo } from "./components/Logo";
+
+import { getGoals, getUniqueKey, setGoalsToLS } from "../../utils";
 import { useContextSelector } from "use-context-selector";
-import { GoalsContext } from "../../contexts/Goals";
-import { getUniqueKey } from "../../utils";
+import { GoalContext } from "../../contexts/Goal";
 
 export function Header({
-  goal,
   isListGoalsPage,
   shownButtonBack,
   onBackButtonClick,
   setIsListGoalsPage,
-  setGoal,
 }: HeaderProps) {
-  const setGoals = useContextSelector(GoalsContext, (goals) => goals[1]);
+  const [goal, setGoal] = useContextSelector(GoalContext, (goal) => goal);
 
   const [inputValue, setInputValue] = useState("");
 
   function handleCreateButtonClick() {
     const newGoal = { id: getUniqueKey(), name: inputValue };
-
-    setGoals((prevGoals) => {
-      const newList = [...prevGoals, newGoal];
-      localStorage.setItem("goals", JSON.stringify(newList));
-      return newList;
-    });
+    setGoalsToLS([...getGoals(), newGoal]);
     setGoal(newGoal);
     setIsListGoalsPage(false);
     setInputValue("");

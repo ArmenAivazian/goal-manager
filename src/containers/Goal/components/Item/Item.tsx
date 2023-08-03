@@ -5,7 +5,6 @@ import { useState } from "react";
 
 export function Item({ id, name, progress, onDbClick }: ItemProps) {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
-  const [goalName, setGoalName] = useState(name);
 
   return (
     <>
@@ -14,7 +13,7 @@ export function Item({ id, name, progress, onDbClick }: ItemProps) {
         onDoubleClick={onDbClick}
         onClick={() => setIsPopupOpened(true)}
       >
-        {goalName}
+        {name}
         <span
           className={classes.progress}
           {...(progress && { style: { width: `${progress * 100}%` } })}
@@ -24,8 +23,7 @@ export function Item({ id, name, progress, onDbClick }: ItemProps) {
       {isPopupOpened && (
         <EditPopup
           id={id}
-          name={goalName}
-          setGoalName={setGoalName}
+          name={name}
           onClose={() => setIsPopupOpened(false)}
         />
       )}
