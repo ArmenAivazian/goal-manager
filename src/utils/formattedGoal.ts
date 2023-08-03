@@ -1,8 +1,6 @@
 import { GoalType } from "../types/goal";
 
 function calculateProgress(data: GoalType): number {
-  if ("progress" in data) return data.progress!;
-
   if ("children" in data && Array.isArray(data.children)) {
     const initValue = { totalProgress: 0, totalImportance: 0 };
 
@@ -19,7 +17,7 @@ function calculateProgress(data: GoalType): number {
       initValue
     );
 
-    data.progress = totalProgress / totalImportance;
+    data.progress = +(totalProgress / totalImportance).toFixed(3);
   }
 
   return data.progress || 0;

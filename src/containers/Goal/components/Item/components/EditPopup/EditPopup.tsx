@@ -5,6 +5,7 @@ import { useContextSelector } from "use-context-selector";
 import { GoalContext } from "../../../../../../contexts/Goal";
 import { getUpdatedGoal, updateGoal } from "./utils";
 import { Field } from "./components/Field";
+import { formattedGoal } from "../../../../../../utils";
 
 export function EditPopup({ id, name, onClose }: EditPopupProps) {
   const setGoal = useContextSelector(GoalContext, (goal) => goal[1]);
@@ -15,7 +16,7 @@ export function EditPopup({ id, name, onClose }: EditPopupProps) {
         if (!prevGoal) return prevGoal;
         const newGoal = getUpdatedGoal(action, prevGoal, id, newValue);
         updateGoal(prevGoal, newGoal);
-        return newGoal;
+        return formattedGoal(newGoal);
       });
     };
   }
