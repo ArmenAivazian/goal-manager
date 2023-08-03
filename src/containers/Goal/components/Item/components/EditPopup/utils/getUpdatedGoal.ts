@@ -2,8 +2,8 @@ import { GoalType } from "../../../../../../../types/goal";
 import { getUniqueKey } from "../../../../../../../utils";
 import { Action } from "../EditPopup.types";
 
-function editName(prevGoal: GoalType, newName: string) {
-  return { ...prevGoal, name: newName };
+function editGoal(prevGoal: GoalType, field: keyof GoalType, newValue: string) {
+  return { ...prevGoal, [field]: newValue };
 }
 
 function addNewSubGoal(prevGoal: GoalType, name: string) {
@@ -20,11 +20,10 @@ export function getUpdatedGoal(
   newValue: string
 ) {
   if (prevGoal.id === id) {
-    switch (action) {
-      case "edit":
-        return editName(prevGoal, newValue);
-      case "add":
-        return addNewSubGoal(prevGoal, newValue);
+    if (action === "add") return addNewSubGoal(prevGoal, newValue);
+
+    if (action?.type === "edit") {
+      return editGoal(prevGoal, action.field, newValue);
     }
   }
 

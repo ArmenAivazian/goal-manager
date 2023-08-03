@@ -3,7 +3,13 @@ import classes from "./Item.module.scss";
 import { EditPopup } from "./components/EditPopup";
 import { useState } from "react";
 
-export function Item({ id, name, progress, onDbClick }: ItemProps) {
+export function Item({
+  id,
+  name,
+  progress,
+  canChangeProgress,
+  onDbClick,
+}: ItemProps) {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
 
   return (
@@ -24,6 +30,8 @@ export function Item({ id, name, progress, onDbClick }: ItemProps) {
         <EditPopup
           id={id}
           name={name}
+          progress={progress}
+          canChangeProgress={canChangeProgress}
           onClose={() => setIsPopupOpened(false)}
         />
       )}

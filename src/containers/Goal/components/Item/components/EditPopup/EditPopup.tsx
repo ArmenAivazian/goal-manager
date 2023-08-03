@@ -7,7 +7,13 @@ import { getUpdatedGoal, updateGoal } from "./utils";
 import { Field } from "./components/Field";
 import { formattedGoal } from "../../../../../../utils";
 
-export function EditPopup({ id, name, onClose }: EditPopupProps) {
+export function EditPopup({
+  id,
+  name,
+  canChangeProgress,
+  progress,
+  onClose,
+}: EditPopupProps) {
   const setGoal = useContextSelector(GoalContext, (goal) => goal[1]);
 
   function modifyGoal(action: Action) {
@@ -34,7 +40,7 @@ export function EditPopup({ id, name, onClose }: EditPopupProps) {
         label="Name"
         buttonName="Edit"
         initValue={name}
-        onSubmit={modifyGoal("edit")}
+        onSubmit={modifyGoal({ type: "edit", field: "name" })}
       />
       <Field
         label="Add sub-goal"
@@ -42,6 +48,15 @@ export function EditPopup({ id, name, onClose }: EditPopupProps) {
         onSubmit={modifyGoal("add")}
         clearAfterSubmit
       />
+      {canChangeProgress && (
+        <Field
+          label="Progress"
+          buttonName="Submit"
+          type="range"
+          onSubmit={modifyGoal({ type: "edit", field: "progress" })}
+          initValue={`${(progress || 0) * 100}`}
+        />
+      )}
     </dialog>
   );
 }

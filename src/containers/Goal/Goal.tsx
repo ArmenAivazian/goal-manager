@@ -12,7 +12,9 @@ export function Goal({ goal, selectedGoal, setSelectedGoal }: GoalProps) {
   if (!currentGoal) return <></>;
 
   if (!Array.isArray(currentGoal)) {
-    if (!currentGoal.children) return <Item {...currentGoal} />;
+    if (!currentGoal.children) {
+      return <Item {...currentGoal} canChangeProgress />;
+    }
 
     return (
       <>
@@ -38,6 +40,7 @@ export function Goal({ goal, selectedGoal, setSelectedGoal }: GoalProps) {
               id={id}
               name={name}
               progress={progress}
+              canChangeProgress={!hasChildren}
               {...(hasChildren && { onDbClick: () => setSelectedGoal(item) })}
             />
 
