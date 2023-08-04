@@ -18,7 +18,7 @@ export function Goal({ goal, selectedGoal, setSelectedGoal }: GoalProps) {
 
     return (
       <>
-        <Item {...currentGoal} />
+        <Item {...currentGoal} addSubGoalWithImportance />
 
         <Goal goal={currentGoal.children} setSelectedGoal={setSelectedGoal} />
       </>
@@ -41,6 +41,7 @@ export function Goal({ goal, selectedGoal, setSelectedGoal }: GoalProps) {
               name={name}
               progress={progress}
               canChangeProgress={!hasChildren}
+              addSubGoalWithImportance={hasChildren}
               {...(hasChildren && { onDbClick: () => setSelectedGoal(item) })}
             />
 

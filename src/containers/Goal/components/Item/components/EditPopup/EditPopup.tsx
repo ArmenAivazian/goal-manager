@@ -1,31 +1,20 @@
 import { useEffect } from "react";
 import classes from "./EditPopup.module.scss";
-import { Action, EditPopupProps } from "./EditPopup.types";
-import { useContextSelector } from "use-context-selector";
-import { GoalContext } from "../../../../../../contexts/Goal";
-import { getUpdatedGoal, updateGoal } from "./utils";
+import { EditPopupProps } from "./EditPopup.types";
+
 import { Field } from "./components/Field";
-import { formattedGoal } from "../../../../../../utils";
+
+import { useModifyGoal } from "./hooks";
 
 export function EditPopup({
   id,
   name,
   canChangeProgress,
+  addSubGoalWithImportance,
   progress,
   onClose,
 }: EditPopupProps) {
-  const setGoal = useContextSelector(GoalContext, (goal) => goal[1]);
-
-  function modifyGoal(action: Action) {
-    return (newValue: string) => {
-      setGoal((prevGoal) => {
-        if (!prevGoal) return prevGoal;
-        const newGoal = getUpdatedGoal(action, prevGoal, id, newValue);
-        updateGoal(prevGoal, newGoal);
-        return formattedGoal(newGoal);
-      });
-    };
-  }
+  const modifyGoal = useModifyGoal(id);
 
   useEffect(() => {
     const listener = ({ key }: KeyboardEvent) => key === "Escape" && onClose();
@@ -47,6 +36,7 @@ export function EditPopup({
         buttonName="Add"
         onSubmit={modifyGoal("add")}
         clearAfterSubmit
+        withImportance={addSubGoalWithImportance}
       />
       {canChangeProgress && (
         <Field

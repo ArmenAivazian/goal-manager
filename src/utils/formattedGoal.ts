@@ -1,7 +1,7 @@
 import { GoalType } from "../types/goal";
 
 function calculateProgress(data: GoalType): number {
-  if ("children" in data && Array.isArray(data.children)) {
+  if (Array.isArray(data.children)) {
     const initValue = { totalProgress: 0, totalImportance: 0 };
 
     const { totalProgress, totalImportance } = data.children.reduce(

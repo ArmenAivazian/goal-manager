@@ -1,23 +1,22 @@
-import { GoalType } from "../../../../../../../types/goal";
-import { getUniqueKey } from "../../../../../../../utils";
-import { Action } from "../EditPopup.types";
+import { GoalType } from "../../../../../../../../types/goal";
+import { Action, GoalNewValue } from "../../EditPopup.types";
+import { addNewSubGoal } from "./utils";
 
-function editGoal(prevGoal: GoalType, field: keyof GoalType, newValue: string) {
-  return { ...prevGoal, [field]: newValue };
-}
+function editGoal(
+  prevGoal: GoalType,
+  field: keyof GoalType,
+  newValue: GoalNewValue
+) {
+  const value = typeof newValue === "string" ? { [field]: newValue } : newValue;
 
-function addNewSubGoal(prevGoal: GoalType, name: string) {
-  return {
-    ...prevGoal,
-    children: [...(prevGoal.children || []), { id: getUniqueKey(), name }],
-  };
+  return { ...prevGoal, ...value };
 }
 
 export function getUpdatedGoal(
   action: Action,
   prevGoal: GoalType,
   id: string,
-  newValue: string
+  newValue: GoalNewValue
 ) {
   if (prevGoal.id === id) {
     if (action === "add") return addNewSubGoal(prevGoal, newValue);

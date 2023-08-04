@@ -8,6 +8,7 @@ export function Item({
   name,
   progress,
   canChangeProgress,
+  addSubGoalWithImportance,
   onDbClick,
 }: ItemProps) {
   const [isPopupOpened, setIsPopupOpened] = useState(false);
@@ -32,6 +33,7 @@ export function Item({
           name={name}
           progress={progress}
           canChangeProgress={canChangeProgress}
+          addSubGoalWithImportance={addSubGoalWithImportance}
           onClose={() => setIsPopupOpened(false)}
         />
       )}

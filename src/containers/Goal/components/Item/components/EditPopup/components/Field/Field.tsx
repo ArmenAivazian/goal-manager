@@ -1,32 +1,41 @@
 import { useState } from "react";
 import classes from "./Field.module.scss";
 import { FieldProps } from "./Field.types";
+import { submitForm } from "./utils";
 
 export function Field({
   label,
   buttonName,
   initValue,
   clearAfterSubmit,
+  withImportance,
   type = "text",
   onSubmit,
 }: FieldProps) {
   const [inputValue, setInputValue] = useState(initValue || "");
+  const [importance, setImportance] = useState("50");
+
+  const isTypeRange = type === "range";
+  const shownPercent = isTypeRange || withImportance;
+  const percent = withImportance ? importance : inputValue;
 
   return (
     <form
       className={classes.line}
-      onSubmit={(e) => {
-        e.preventDefault();
-        const isTypeRange = type === "range";
-        const value = isTypeRange ? `${+inputValue / 100}` : inputValue;
-        onSubmit(value);
-        if (clearAfterSubmit) setInputValue("");
-      }}
+      onSubmit={submitForm(
+        inputValue,
+        isTypeRange,
+        importance,
+        onSubmit,
+        setInputValue,
+        withImportance,
+        clearAfterSubmit
+      )}
     >
       <label className={classes.label}>
         {label}
-        {type === "range" && (
-          <span className={classes.percent}>{`(${inputValue}%)`}</span>
+        {shownPercent && (
+          <span className={classes.percent}>{`(${percent}%)`}</span>
         )}
         :
       </label>
@@ -36,6 +45,14 @@ export function Field({
         value={inputValue}
         onChange={({ target: { value } }) => setInputValue(value)}
       />
+      {withImportance && (
+        <input
+          type="range"
+          className={classes.input}
+          value={importance}
+          onChange={({ target: { value } }) => setImportance(value)}
+        />
+      )}
       <button>{buttonName}</button>
     </form>
   );
