@@ -1,16 +1,16 @@
-import { useContextSelector } from "use-context-selector";
 import classes from "./GoalContainer.module.scss";
 import { GoalContainerProps } from "./Goal.types";
 
 import { Goal } from "./components/Goal";
 import { GoalContext } from "../../contexts/Goal";
 import { Item } from "./components/Goal/components/Item";
+import { useGetContext } from "../../hooks/useContext";
 
 export function GoalContainer({
   selectedGoal,
   setSelectedGoal,
 }: GoalContainerProps) {
-  const initGoal = useContextSelector(GoalContext, (goal) => goal[0]);
+  const initGoal = useGetContext(GoalContext);
 
   const goal = selectedGoal || initGoal;
 

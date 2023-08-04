@@ -1,8 +1,8 @@
 import type { ItemProps } from "./Item.types";
 import classes from "./Item.module.scss";
 import { EditPopup } from "./components/EditPopup";
-import { useContextSelector } from "use-context-selector";
 import { IdOpenedPopup } from "../../../../../../contexts/IdOpenedPopup";
+import { useContext } from "../../../../../../hooks/useContext";
 
 export function Item({
   id,
@@ -12,10 +12,7 @@ export function Item({
   addSubGoalWithImportance,
   onDbClick,
 }: ItemProps) {
-  const [idOpenedPopup, setIsPopupOpened] = useContextSelector(
-    IdOpenedPopup,
-    (idOpenedPopup) => idOpenedPopup
-  );
+  const [idOpenedPopup, setIsPopupOpened] = useContext(IdOpenedPopup);
 
   return (
     <>

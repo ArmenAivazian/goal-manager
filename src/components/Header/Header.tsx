@@ -2,10 +2,9 @@ import { useState } from "react";
 import classes from "./Header.module.scss";
 import { HeaderProps } from "./Header.types";
 import { Logo } from "./components/Logo";
-
 import { getGoals, getUniqueKey, setGoalsToLS } from "../../utils";
-import { useContextSelector } from "use-context-selector";
 import { GoalContext } from "../../contexts/Goal";
+import { useContext } from "../../hooks";
 
 export function Header({
   isListGoalsPage,
@@ -13,7 +12,7 @@ export function Header({
   onBackButtonClick,
   setIsListGoalsPage,
 }: HeaderProps) {
-  const [goal, setGoal] = useContextSelector(GoalContext, (goal) => goal);
+  const [goal, setGoal] = useContext(GoalContext);
 
   const [inputValue, setInputValue] = useState("");
 

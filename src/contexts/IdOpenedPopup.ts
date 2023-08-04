@@ -1,9 +1,10 @@
+import { Dispatch } from "react";
 import { createContext } from "use-context-selector";
 
-type Value = string | null;
-type DispatchType = (value: Value) => void;
+type Id = string | null;
+type DispatchId = Dispatch<React.SetStateAction<Id>>;
 
-export const IdOpenedPopup = createContext<[Value, DispatchType]>([
+export const IdOpenedPopup = createContext<[Id, DispatchId]>([
   null,
   () => null,
 ]);
