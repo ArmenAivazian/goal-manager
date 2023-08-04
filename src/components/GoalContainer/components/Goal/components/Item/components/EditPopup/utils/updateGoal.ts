@@ -1,5 +1,5 @@
-import { GoalType } from "../../../../../../../types/goal";
-import { getGoals } from "../../../../../../../utils";
+import { GoalType } from "../../../../../../../../../types/goal";
+import { getGoals } from "../../../../../../../../../utils";
 
 function childrenSearch(prevGoal: GoalType, newGoal: GoalType, id: string) {
   if (id === prevGoal.id) return newGoal;

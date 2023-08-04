@@ -1,10 +1,8 @@
-import { Goal } from "./components/Goal";
-import classes from "./App.module.scss";
 import { useState } from "react";
-
 import { Header } from "./components/Header";
 import { GoalType } from "./types/goal";
 import { GoalsList } from "./components/GoalsList";
+import { GoalContainer } from "./components/GoalContainer";
 
 function App() {
   const [selectedGoal, setSelectedGoal] = useState<GoalType | null>(null);
@@ -26,9 +24,10 @@ function App() {
           setIsListGoalsPage={setIsListGoalsPage}
         />
       ) : (
-        <div className={classes.wrapper}>
-          <Goal selectedGoal={selectedGoal} setSelectedGoal={setSelectedGoal} />
-        </div>
+        <GoalContainer
+          selectedGoal={selectedGoal}
+          setSelectedGoal={setSelectedGoal}
+        />
       )}
     </>
   );

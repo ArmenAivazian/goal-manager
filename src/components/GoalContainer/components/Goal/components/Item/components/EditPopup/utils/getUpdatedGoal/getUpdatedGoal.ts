@@ -1,4 +1,4 @@
-import { GoalType } from "../../../../../../../../types/goal";
+import { GoalType } from "../../../../../../../../../../types/goal";
 import { Action, GoalNewValue } from "../../EditPopup.types";
 import { addNewSubGoal } from "./utils";
 

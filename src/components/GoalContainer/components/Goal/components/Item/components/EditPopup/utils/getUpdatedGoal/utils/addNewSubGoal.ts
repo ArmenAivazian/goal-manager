@@ -1,5 +1,5 @@
-import { GoalType } from "../../../../../../../../../types/goal";
-import { getUniqueKey } from "../../../../../../../../../utils";
+import { GoalType } from "../../../../../../../../../../../types/goal";
+import { getUniqueKey } from "../../../../../../../../../../../utils";
 import { GoalNewValue } from "../../../EditPopup.types";
 
 export function addNewSubGoal(prevGoal: GoalType, newValue: GoalNewValue) {

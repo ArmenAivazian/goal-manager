@@ -1,33 +1,23 @@
-import { useContextSelector } from "use-context-selector";
 import classes from "./Goal.module.scss";
 import { GoalProps } from "./Goal.types";
 import { Item } from "./components/Item";
-import { GoalContext } from "../../contexts/Goal";
 
-export function Goal({ goal, selectedGoal, setSelectedGoal }: GoalProps) {
-  const initGoal = useContextSelector(GoalContext, (goal) => goal[0]);
+export function Goal({ goal, setSelectedGoal }: GoalProps) {
+  if (!goal) return goal;
 
-  const currentGoal = selectedGoal || goal || initGoal;
-
-  if (!currentGoal) return <></>;
-
-  if (!Array.isArray(currentGoal)) {
-    if (!currentGoal.children) {
-      return <Item {...currentGoal} canChangeProgress />;
-    }
-
+  if (!Array.isArray(goal)) {
     return (
       <>
-        <Item {...currentGoal} addSubGoalWithImportance />
+        <Item {...goal} addSubGoalWithImportance />
 
-        <Goal goal={currentGoal.children} setSelectedGoal={setSelectedGoal} />
+        <Goal goal={goal.children} setSelectedGoal={setSelectedGoal} />
       </>
     );
   }
 
   return (
     <div className={classes.line}>
-      {currentGoal.map((item) => {
+      {goal.map((item) => {
         const { id, name, children, progress, importance } = item;
         const hasChildren = !!children?.length;
 

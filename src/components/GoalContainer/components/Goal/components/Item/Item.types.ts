@@ -1,4 +1,4 @@
-import { GoalType } from "../../../../types/goal";
+import { GoalType } from "../../../../../../types/goal";
 
 export interface ItemProps extends GoalType {
   canChangeProgress?: boolean;

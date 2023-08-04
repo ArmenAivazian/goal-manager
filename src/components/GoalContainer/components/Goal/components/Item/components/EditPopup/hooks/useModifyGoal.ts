@@ -1,8 +1,8 @@
 import { useContextSelector } from "use-context-selector";
 import { Action, GoalNewValue } from "../EditPopup.types";
-import { GoalContext } from "../../../../../../../contexts/Goal";
+import { GoalContext } from "../../../../../../../../../contexts/Goal";
 import { getUpdatedGoal, updateGoal } from "../utils";
-import { formattedGoal } from "../../../../../../../utils";
+import { formattedGoal } from "../../../../../../../../../utils";
 
 export function useModifyGoal(id: string) {
   const setGoal = useContextSelector(GoalContext, (goal) => goal[1]);
