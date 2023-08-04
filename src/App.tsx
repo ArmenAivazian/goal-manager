@@ -1,4 +1,4 @@
-import { Goal } from "./containers/Goal";
+import { Goal } from "./components/Goal";
 import classes from "./App.module.scss";
 import { useState } from "react";
 
@@ -26,14 +26,9 @@ function App() {
           setIsListGoalsPage={setIsListGoalsPage}
         />
       ) : (
-        <>
-          <div className={classes.wrapper}>
-            <Goal
-              selectedGoal={selectedGoal}
-              setSelectedGoal={setSelectedGoal}
-            />
-          </div>
-        </>
+        <div className={classes.wrapper}>
+          <Goal selectedGoal={selectedGoal} setSelectedGoal={setSelectedGoal} />
+        </div>
       )}
     </>
   );
