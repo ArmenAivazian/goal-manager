@@ -1,7 +1,8 @@
 import type { ItemProps } from "./Item.types";
 import classes from "./Item.module.scss";
 import { EditPopup } from "./components/EditPopup";
-import { useState } from "react";
+import { useContextSelector } from "use-context-selector";
+import { IdOpenedPopup } from "../../../../../../contexts/IdOpenedPopup";
 
 export function Item({
   id,
@@ -11,14 +12,17 @@ export function Item({
   addSubGoalWithImportance,
   onDbClick,
 }: ItemProps) {
-  const [isPopupOpened, setIsPopupOpened] = useState(false);
+  const [idOpenedPopup, setIsPopupOpened] = useContextSelector(
+    IdOpenedPopup,
+    (idOpenedPopup) => idOpenedPopup
+  );
 
   return (
     <>
       <div
         className={classes.wrapper}
         onDoubleClick={onDbClick}
-        onClick={() => setIsPopupOpened(true)}
+        onClick={() => setIsPopupOpened(id)}
       >
         {name}
         <span
@@ -27,14 +31,14 @@ export function Item({
         />
       </div>
 
-      {isPopupOpened && (
+      {idOpenedPopup === id && (
         <EditPopup
           id={id}
           name={name}
           progress={progress}
           canChangeProgress={canChangeProgress}
           addSubGoalWithImportance={addSubGoalWithImportance}
-          onClose={() => setIsPopupOpened(false)}
+          onClose={() => setIsPopupOpened(null)}
         />
       )}
     </>

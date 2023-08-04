@@ -11,6 +11,7 @@ export function GoalContainer({
   setSelectedGoal,
 }: GoalContainerProps) {
   const initGoal = useContextSelector(GoalContext, (goal) => goal[0]);
+
   const goal = selectedGoal || initGoal;
 
   if (!goal) return <></>;
