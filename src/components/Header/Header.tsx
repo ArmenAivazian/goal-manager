@@ -21,12 +21,12 @@ export function Header({ isHaveSelectedGoal, onBackButtonClick }: HeaderProps) {
     setCurrentPage("goal");
     setInputValue("");
     localStorage.setItem(
-      LocalStorageKeys.LastOpenedGoal,
-      JSON.stringify(newGoal)
+      LocalStorageKeys.IdLastOpenedGoal,
+      JSON.stringify(newGoal.id)
     );
   }
 
-  const shownButtonBack = !!(isHaveSelectedGoal && !currentPage);
+  const shownButtonBack = !!(isHaveSelectedGoal && currentPage === "goal");
 
   return (
     <header className={classes.header}>

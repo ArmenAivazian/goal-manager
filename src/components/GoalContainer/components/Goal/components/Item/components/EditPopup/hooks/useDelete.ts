@@ -18,8 +18,9 @@ export function useDelete(id: string) {
 
       const newGoal = deleteGoal(goal, prev);
       if (!newGoal) setCurrentPage("main");
-      updateGoal(prev, newGoal);
-      return formattedGoal(newGoal);
+      const formattedNewGoal = formattedGoal(newGoal);
+      updateGoal(prev, formattedNewGoal);
+      return formattedNewGoal;
     });
   }
 

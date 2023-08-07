@@ -12,10 +12,12 @@ export function useModifyGoal(id: string) {
       setGoal((prevGoal) => {
         if (!prevGoal) return prevGoal;
 
-        const newGoal = getUpdatedGoal(action, prevGoal, id, newValue);
+        const newGoal = formattedGoal(
+          getUpdatedGoal(action, prevGoal, id, newValue)
+        );
 
         updateGoal(prevGoal, newGoal);
-        return formattedGoal(newGoal);
+        return newGoal;
       });
     };
   };

@@ -1,4 +1,4 @@
 export enum LocalStorageKeys {
   Goals = "goals",
-  LastOpenedGoal = "lastOpenedGoal",
+  IdLastOpenedGoal = "lastOpenedGoal",
 }

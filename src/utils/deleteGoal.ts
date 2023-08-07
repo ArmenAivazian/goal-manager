@@ -1,16 +1,22 @@
 import { GoalType } from "../types/goal";
 
 export function deleteGoal(targetGoal: GoalType, goal: GoalType) {
-  if (goal.id === targetGoal.id) return null;
+  const isTargetGoal = goal.id === targetGoal.id;
+
+  if (isTargetGoal) return null;
 
   if (goal.children) {
-    const children = goal.children.filter((child): GoalType | null =>
-      deleteGoal(targetGoal, child)
-    );
+    const children: GoalType[] = [];
 
-    if (!children?.length) delete goal.children;
+    for (const child of goal.children) {
+      const modifiedChild = deleteGoal(targetGoal, child);
 
-    return { ...goal, ...(children?.length && { children }) };
+      if (modifiedChild) children.push(modifiedChild);
+    }
+
+    return children.length
+      ? { ...goal, children }
+      : { ...goal, children: undefined };
   }
 
   return goal;

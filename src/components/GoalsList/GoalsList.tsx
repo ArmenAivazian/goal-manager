@@ -15,7 +15,10 @@ export function GoalsList({ setSelectedGoal }: GoalsListProps) {
     setGoal(goal);
     setSelectedGoal(null);
     setCurrentPage("goal");
-    localStorage.setItem(LocalStorageKeys.LastOpenedGoal, JSON.stringify(goal));
+    localStorage.setItem(
+      LocalStorageKeys.IdLastOpenedGoal,
+      JSON.stringify(goal.id)
+    );
   }
 
   return (
