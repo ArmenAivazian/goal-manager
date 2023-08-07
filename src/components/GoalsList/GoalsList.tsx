@@ -5,6 +5,7 @@ import { GoalsListProps } from "./GoalsList.types";
 import { GoalContext } from "../../contexts/Goal";
 import { useSetContext } from "../../hooks/useContext";
 import { CurrentPageContext } from "../../contexts/CurrentPage";
+import { LocalStorageKeys } from "../../types/localStorageKeys";
 
 export function GoalsList({ setSelectedGoal }: GoalsListProps) {
   const setCurrentPage = useSetContext(CurrentPageContext);
@@ -14,6 +15,7 @@ export function GoalsList({ setSelectedGoal }: GoalsListProps) {
     setGoal(goal);
     setSelectedGoal(null);
     setCurrentPage("goal");
+    localStorage.setItem(LocalStorageKeys.LastOpenedGoal, JSON.stringify(goal));
   }
 
   return (

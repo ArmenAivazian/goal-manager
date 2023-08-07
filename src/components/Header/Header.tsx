@@ -6,6 +6,7 @@ import { getGoals, getUniqueKey, setGoalsToLS } from "../../utils";
 import { GoalContext } from "../../contexts/Goal";
 import { useContext } from "../../hooks";
 import { CurrentPageContext } from "../../contexts/CurrentPage";
+import { LocalStorageKeys } from "../../types/localStorageKeys";
 
 export function Header({ isHaveSelectedGoal, onBackButtonClick }: HeaderProps) {
   const [currentPage, setCurrentPage] = useContext(CurrentPageContext);
@@ -19,6 +20,10 @@ export function Header({ isHaveSelectedGoal, onBackButtonClick }: HeaderProps) {
     setGoal(newGoal);
     setCurrentPage("goal");
     setInputValue("");
+    localStorage.setItem(
+      LocalStorageKeys.LastOpenedGoal,
+      JSON.stringify(newGoal)
+    );
   }
 
   const shownButtonBack = !!(isHaveSelectedGoal && !currentPage);
@@ -27,7 +32,7 @@ export function Header({ isHaveSelectedGoal, onBackButtonClick }: HeaderProps) {
     <header className={classes.header}>
       {goal && <Logo />}
       {shownButtonBack && <button onClick={onBackButtonClick}>Back</button>}
-      {currentPage === 'main' && (
+      {currentPage === "main" && (
         <form className={classes.create} onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
