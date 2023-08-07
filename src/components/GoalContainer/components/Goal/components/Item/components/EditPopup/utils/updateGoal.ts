@@ -1,4 +1,5 @@
 import { GoalType } from "../../../../../../../../../types/goal";
+import { LocalStorageKeys } from "../../../../../../../../../types/localStorageKeys";
 import { getGoals } from "../../../../../../../../../utils";
 
 function childrenSearch(prevGoal: GoalType, newGoal: GoalType, id: string) {
@@ -21,5 +22,5 @@ export function updateGoal(prevGoal: GoalType, newGoal: GoalType | null) {
 
   const newGoals = getNewGoals(goals, id, newGoal);
 
-  localStorage.setItem("goals", JSON.stringify(newGoals));
+  localStorage.setItem(LocalStorageKeys.Goals, JSON.stringify(newGoals));
 }
