@@ -3,27 +3,24 @@ import { Header } from "./components/Header";
 import { GoalType } from "./types/goal";
 import { GoalsList } from "./components/GoalsList";
 import { GoalContainer } from "./components/GoalContainer";
+import { useGetContext } from "./hooks/useContext";
+import { CurrentPageContext } from "./contexts/CurrentPage";
 
 function App() {
-  const [selectedGoal, setSelectedGoal] = useState<GoalType | null>(null);
-  const [isListGoalsPage, setIsListGoalsPage] = useState(true);
+  const currentPage = useGetContext(CurrentPageContext);
 
-  const shownButtonBack = !!(selectedGoal && !isListGoalsPage);
+  const [selectedGoal, setSelectedGoal] = useState<GoalType | null>(null);
 
   return (
     <>
       <Header
-        isListGoalsPage={isListGoalsPage}
-        shownButtonBack={shownButtonBack}
-        setIsListGoalsPage={setIsListGoalsPage}
+        isHaveSelectedGoal={!!selectedGoal}
         onBackButtonClick={() => setSelectedGoal(null)}
       />
-      {isListGoalsPage ? (
-        <GoalsList
-          setSelectedGoal={setSelectedGoal}
-          setIsListGoalsPage={setIsListGoalsPage}
-        />
-      ) : (
+      {currentPage === "main" && (
+        <GoalsList setSelectedGoal={setSelectedGoal} />
+      )}
+      {currentPage === "goal" && (
         <GoalContainer
           selectedGoal={selectedGoal}
           setSelectedGoal={setSelectedGoal}

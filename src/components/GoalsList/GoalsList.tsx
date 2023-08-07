@@ -4,17 +4,16 @@ import classes from "./GoalsList.module.scss";
 import { GoalsListProps } from "./GoalsList.types";
 import { GoalContext } from "../../contexts/Goal";
 import { useSetContext } from "../../hooks/useContext";
+import { CurrentPageContext } from "../../contexts/CurrentPage";
 
-export function GoalsList({
-  setSelectedGoal,
-  setIsListGoalsPage,
-}: GoalsListProps) {
+export function GoalsList({ setSelectedGoal }: GoalsListProps) {
+  const setCurrentPage = useSetContext(CurrentPageContext);
   const setGoal = useSetContext(GoalContext);
 
   function handleGoalButtonClick(goal: GoalType) {
     setGoal(goal);
     setSelectedGoal(null);
-    setIsListGoalsPage(false);
+    setCurrentPage("goal");
   }
 
   return (

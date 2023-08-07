@@ -1,0 +1,1 @@
+export { getImgSrc } from "./getImgSrc";

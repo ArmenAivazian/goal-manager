@@ -1,6 +1,4 @@
 export interface HeaderProps {
-  isListGoalsPage: boolean;
-  shownButtonBack: boolean;
-  setIsListGoalsPage: (value: boolean) => void;
+  isHaveSelectedGoal: boolean;
   onBackButtonClick: () => void;
 }

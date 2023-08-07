@@ -1,16 +1,20 @@
-import homeIcon from "../../../../assets/icons/home.svg";
-import targetIcon from "/favicon.svg";
 import classes from "./Logo.module.scss";
-import { LogoProps } from "./Logo.types";
+import { useContext } from "../../../../hooks";
+import { CurrentPageContext } from "../../../../contexts/CurrentPage";
+import { getImgSrc } from "./utils";
 
-export function Logo({ isListGoalsPage, setIsListGoalsPage }: LogoProps) {
+export function Logo() {
+  const [currentPage, setCurrentPage] = useContext(CurrentPageContext);
+
+  function handleLogoClick() {
+    if (currentPage === "main") setCurrentPage("goal");
+
+    if (currentPage === "goal") setCurrentPage("main");
+  }
+
   return (
-    <button onClick={setIsListGoalsPage} className={classes.wrapper}>
-      <img
-        src={isListGoalsPage ? targetIcon : homeIcon}
-        className={classes.logo}
-        alt="Logo"
-      />
+    <button onClick={handleLogoClick} className={classes.wrapper}>
+      <img src={getImgSrc(currentPage)} className={classes.logo} alt="Logo" />
     </button>
   );
 }

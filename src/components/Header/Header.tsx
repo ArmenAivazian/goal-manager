@@ -5,13 +5,10 @@ import { Logo } from "./components/Logo";
 import { getGoals, getUniqueKey, setGoalsToLS } from "../../utils";
 import { GoalContext } from "../../contexts/Goal";
 import { useContext } from "../../hooks";
+import { CurrentPageContext } from "../../contexts/CurrentPage";
 
-export function Header({
-  isListGoalsPage,
-  shownButtonBack,
-  onBackButtonClick,
-  setIsListGoalsPage,
-}: HeaderProps) {
+export function Header({ isHaveSelectedGoal, onBackButtonClick }: HeaderProps) {
+  const [currentPage, setCurrentPage] = useContext(CurrentPageContext);
   const [goal, setGoal] = useContext(GoalContext);
 
   const [inputValue, setInputValue] = useState("");
@@ -20,20 +17,17 @@ export function Header({
     const newGoal = { id: getUniqueKey(), name: inputValue };
     setGoalsToLS([...getGoals(), newGoal]);
     setGoal(newGoal);
-    setIsListGoalsPage(false);
+    setCurrentPage("goal");
     setInputValue("");
   }
 
+  const shownButtonBack = !!(isHaveSelectedGoal && !currentPage);
+
   return (
     <header className={classes.header}>
-      {goal && (
-        <Logo
-          isListGoalsPage={isListGoalsPage}
-          setIsListGoalsPage={() => setIsListGoalsPage(!isListGoalsPage)}
-        />
-      )}
+      {goal && <Logo />}
       {shownButtonBack && <button onClick={onBackButtonClick}>Back</button>}
-      {isListGoalsPage && (
+      {currentPage === 'main' && (
         <form className={classes.create} onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
