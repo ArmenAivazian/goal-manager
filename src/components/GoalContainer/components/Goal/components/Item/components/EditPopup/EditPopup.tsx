@@ -4,7 +4,7 @@ import { EditPopupProps } from "./EditPopup.types";
 
 import { Field } from "./components/Field";
 
-import { useModifyGoal } from "./hooks";
+import { useDelete, useModifyGoal } from "./hooks";
 
 export function EditPopup({
   id,
@@ -14,6 +14,7 @@ export function EditPopup({
   progress,
   onClose,
 }: EditPopupProps) {
+  const onDelete = useDelete(id);
   const modifyGoal = useModifyGoal(id);
 
   useEffect(() => {
@@ -47,6 +48,9 @@ export function EditPopup({
           initValue={`${(progress || 0) * 100}`}
         />
       )}
+      <button className={classes.button} onClick={onDelete}>
+        Delete
+      </button>
     </dialog>
   );
 }

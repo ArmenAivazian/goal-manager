@@ -30,7 +30,7 @@ export function getUpdatedGoal(
     return {
       ...prevGoal,
       children: prevGoal.children.map(
-        (goal): GoalType => getUpdatedGoal(action, goal, id, newValue) || goal
+        (goal): GoalType => getUpdatedGoal(action, goal, id, newValue)
       ),
     };
   }
