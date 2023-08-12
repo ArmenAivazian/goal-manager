@@ -13,11 +13,11 @@ export function Field({
   onSubmit,
 }: FieldProps) {
   const [inputValue, setInputValue] = useState(initValue || "");
-  const [importance, setImportance] = useState("50");
+  const [rangeInputValue, setRangeInputValue] = useState("50");
 
   const isTypeRange = type === "range";
   const shownPercent = isTypeRange || withImportance;
-  const percent = withImportance ? importance : inputValue;
+  const percent = withImportance ? rangeInputValue : inputValue;
 
   return (
     <form
@@ -25,7 +25,7 @@ export function Field({
       onSubmit={submitForm(
         inputValue,
         isTypeRange,
-        importance,
+        rangeInputValue,
         onSubmit,
         setInputValue,
         withImportance,
@@ -49,8 +49,8 @@ export function Field({
         <input
           type="range"
           className={classes.input}
-          value={importance}
-          onChange={({ target: { value } }) => setImportance(value)}
+          value={rangeInputValue}
+          onChange={({ target: { value } }) => setRangeInputValue(value)}
         />
       )}
       <button>{buttonName}</button>

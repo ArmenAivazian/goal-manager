@@ -2,7 +2,7 @@ import classes from "./Goal.module.scss";
 import { GoalProps } from "./Goal.types";
 import { Item } from "./components/Item";
 
-export function Goal({ goal, setSelectedGoal }: GoalProps) {
+export function Goal({ goal, notOneChild, setSelectedGoal }: GoalProps) {
   if (!goal) return goal;
 
   if (!Array.isArray(goal)) {
@@ -10,7 +10,11 @@ export function Goal({ goal, setSelectedGoal }: GoalProps) {
       <>
         <Item {...goal} addSubGoalWithImportance />
 
-        <Goal goal={goal.children} setSelectedGoal={setSelectedGoal} />
+        <Goal
+          goal={goal.children}
+          notOneChild={goal.children?.length !== 1}
+          setSelectedGoal={setSelectedGoal}
+        />
       </>
     );
   }
@@ -32,11 +36,17 @@ export function Goal({ goal, setSelectedGoal }: GoalProps) {
               progress={progress}
               canChangeProgress={!hasChildren}
               addSubGoalWithImportance={hasChildren}
+              importance={importance}
+              canChangeImportance={notOneChild}
               {...(hasChildren && { onDbClick: () => setSelectedGoal(item) })}
             />
 
             {!!hasChildren && (
-              <Goal goal={children} setSelectedGoal={setSelectedGoal} />
+              <Goal
+                goal={children}
+                notOneChild={children?.length !== 1}
+                setSelectedGoal={setSelectedGoal}
+              />
             )}
           </div>
         );

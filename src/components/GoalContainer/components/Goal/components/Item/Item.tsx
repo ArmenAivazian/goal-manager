@@ -8,7 +8,9 @@ export function Item({
   id,
   name,
   progress,
+  importance,
   canChangeProgress,
+  canChangeImportance,
   addSubGoalWithImportance,
   onDbClick,
 }: ItemProps) {
@@ -33,7 +35,9 @@ export function Item({
           id={id}
           name={name}
           progress={progress}
+          importance={importance}
           canChangeProgress={canChangeProgress}
+          canChangeImportance={canChangeImportance}
           addSubGoalWithImportance={addSubGoalWithImportance}
           onClose={() => setIsPopupOpened(null)}
         />

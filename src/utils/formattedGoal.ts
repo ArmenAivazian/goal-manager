@@ -1,13 +1,13 @@
 import { GoalType } from "../types/goal";
 
-function calculateProgress(data: GoalType): number {
+function calcFields(data: GoalType): number {
   if (Array.isArray(data.children)) {
     const initValue = { totalProgress: 0, totalImportance: 0 };
 
     const { totalProgress, totalImportance } = data.children.reduce(
       ({ totalProgress, totalImportance }, child) => {
-        const importance = child.importance || 1;
-        const progress = calculateProgress(child) * importance;
+        const importance = Number(child.importance || 1);
+        const progress = calcFields(child) * importance;
 
         return {
           totalProgress: totalProgress + progress,
@@ -23,7 +23,7 @@ function calculateProgress(data: GoalType): number {
 
       data.children = data.children.map((child) => ({
         ...child,
-        importance: (child.importance || 0) + forChild,
+        importance: Number(child.importance || 0) + forChild,
       }));
     }
 
@@ -36,7 +36,7 @@ function calculateProgress(data: GoalType): number {
 export function formattedGoal(data?: GoalType | null): GoalType | null {
   if (!data) return null;
 
-  calculateProgress(data);
+  calcFields(data);
 
   return data;
 }

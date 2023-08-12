@@ -10,7 +10,9 @@ export function EditPopup({
   id,
   name,
   canChangeProgress,
+  canChangeImportance,
   addSubGoalWithImportance,
+  importance,
   progress,
   onClose,
 }: EditPopupProps) {
@@ -32,6 +34,24 @@ export function EditPopup({
         initValue={name}
         onSubmit={modifyGoal({ type: "edit", field: "name" })}
       />
+      {canChangeProgress && (
+        <Field
+          label="Progress"
+          buttonName="Change"
+          type="range"
+          onSubmit={modifyGoal({ type: "edit", field: "progress" })}
+          initValue={`${(progress || 0) * 100}`}
+        />
+      )}
+      {canChangeImportance && (
+        <Field
+          label="Importance"
+          buttonName="Change"
+          initValue={`${(importance || 0) * 100}`}
+          onSubmit={modifyGoal({ type: "edit", field: "importance" })}
+          type="range"
+        />
+      )}
       <Field
         label="Add sub-goal"
         buttonName="Add"
@@ -39,15 +59,6 @@ export function EditPopup({
         clearAfterSubmit
         withImportance={addSubGoalWithImportance}
       />
-      {canChangeProgress && (
-        <Field
-          label="Progress"
-          buttonName="Submit"
-          type="range"
-          onSubmit={modifyGoal({ type: "edit", field: "progress" })}
-          initValue={`${(progress || 0) * 100}`}
-        />
-      )}
       <button className={classes.button} onClick={onDelete}>
         Delete
       </button>

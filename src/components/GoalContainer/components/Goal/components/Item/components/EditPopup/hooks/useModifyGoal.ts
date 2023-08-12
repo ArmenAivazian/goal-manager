@@ -11,10 +11,8 @@ export function useModifyGoal(id: string) {
     return (newValue: GoalNewValue) => {
       setGoal((prevGoal) => {
         if (!prevGoal) return prevGoal;
-
-        const newGoal = formattedGoal(
-          getUpdatedGoal(action, prevGoal, id, newValue)
-        );
+        const goal = getUpdatedGoal(action, prevGoal, id, newValue);
+        const newGoal = formattedGoal(goal);
 
         updateGoal(prevGoal, newGoal);
         return newGoal;
