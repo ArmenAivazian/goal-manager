@@ -24,7 +24,6 @@ export function Field({
       className={classes.line}
       onSubmit={submitForm(
         inputValue,
-        isTypeRange,
         rangeInputValue,
         onSubmit,
         setInputValue,

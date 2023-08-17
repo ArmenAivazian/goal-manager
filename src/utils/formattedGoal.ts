@@ -6,7 +6,7 @@ function calcFields(data: GoalType): number {
 
     const { totalProgress, totalImportance } = data.children.reduce(
       ({ totalProgress, totalImportance }, child) => {
-        const importance = Number(child.importance || 1);
+        const importance = Number(child.importance || 100);
         const progress = calcFields(child) * importance;
 
         return {
@@ -17,8 +17,8 @@ function calcFields(data: GoalType): number {
       initValue
     );
 
-    if (totalImportance !== 1) {
-      const different = 1 - totalImportance;
+    if (totalImportance !== 100) {
+      const different = 100 - totalImportance;
       const forChild = different / data.children.length;
 
       data.children = data.children.map((child) => ({

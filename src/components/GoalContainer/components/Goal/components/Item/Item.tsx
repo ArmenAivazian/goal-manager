@@ -26,7 +26,7 @@ export function Item({
         {name}
         <span
           className={classes.progress}
-          {...(progress && { style: { width: `${progress * 100}%` } })}
+          {...(progress && { style: { width: `${progress}%` } })}
         />
       </div>
 

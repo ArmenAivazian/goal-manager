@@ -26,10 +26,7 @@ export function Goal({ goal, notOneChild, setSelectedGoal }: GoalProps) {
         const hasChildren = !!children?.length;
 
         return (
-          <div
-            key={id}
-            style={{ width: importance ? `${importance * 100}%` : "100%" }}
-          >
+          <div key={id} style={{ width: `${importance}%` }}>
             <Item
               id={id}
               name={name}

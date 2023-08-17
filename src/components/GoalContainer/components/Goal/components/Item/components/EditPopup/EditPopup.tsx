@@ -40,14 +40,14 @@ export function EditPopup({
           buttonName="Change"
           type="range"
           onSubmit={modifyGoal({ type: "edit", field: "progress" })}
-          initValue={`${(progress || 0) * 100}`}
+          initValue={`${progress || 0}`}
         />
       )}
       {canChangeImportance && (
         <Field
           label="Importance"
           buttonName="Change"
-          initValue={`${(importance || 0) * 100}`}
+          initValue={`${importance || 0}`}
           onSubmit={modifyGoal({ type: "edit", field: "importance" })}
           type="range"
         />

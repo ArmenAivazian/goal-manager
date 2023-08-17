@@ -38,7 +38,8 @@ export function getUpdatedGoal(
         return acc + (goal.importance || 0);
       }, 0);
 
-      const balance = (1 - totalImportance) / (prevGoal.children.length - 1);
+      const balance =
+        (100 - totalImportance) / (prevGoal.children.length - 100);
 
       return {
         ...prevGoal,
