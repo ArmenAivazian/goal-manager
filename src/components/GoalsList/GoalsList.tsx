@@ -29,7 +29,7 @@ export function GoalsList({ setSelectedGoal }: GoalsListProps) {
         if (!fullData) return <></>;
 
         const { name, progress } = fullData;
-        const percents = `${progress ? progress * 100 : 0}%`;
+        const percents = `${progress ? progress : 0}%`;
 
         return (
           <button

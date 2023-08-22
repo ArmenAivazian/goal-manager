@@ -1,6 +1,6 @@
 import { GoalType } from "../../../../../../../../../../types/goal";
 import { Action, GoalNewValue } from "../../EditPopup.types";
-import { addNewSubGoal } from "./utils";
+import { addNewSubGoal, getChildren } from "./utils";
 
 function editGoal(goal: GoalType, field: keyof GoalType, value: GoalNewValue) {
   const isValueString = typeof value === "string";
@@ -32,34 +32,13 @@ export function getUpdatedGoal(
   if (prevGoal.children) {
     const isActionString = typeof action === "string";
     const isImportanceEdit = !isActionString && action.field === "importance";
-    let children: GoalType[] = [];
-
-    if (isImportanceEdit) {
-      const isParent = prevGoal.children.some((child) => child.id === id);
-      if (isParent) {
-        const totalImportance = prevGoal.children.reduce(
-          (acc, { id: childId, importance }) => {
-            if (childId === id) return acc + Number(value);
-            return acc + (Number(importance) || 0);
-          },
-          0
-        );
-        const different = 100 - totalImportance;
-        const forChild = different / (prevGoal.children.length - 1);
-
-        children = prevGoal.children.map((goal) => {
-          const isTargetGoal = goal.id === id;
-
-          if (isTargetGoal) return getUpdatedGoal(action, goal, id, value);
-
-          return getUpdatedGoal(action, goal, id, value, forChild);
-        });
-      }
-    } else {
-      children = prevGoal.children.map((goal) =>
-        getUpdatedGoal(action, goal, id, value)
-      );
-    }
+    const children = getChildren(
+      isImportanceEdit,
+      prevGoal.children,
+      action,
+      id,
+      value
+    );
 
     return { ...prevGoal, children };
   }

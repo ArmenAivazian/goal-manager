@@ -8,9 +8,9 @@ import { getGoals } from "../utils";
 
 export function ContextProviders({ children }: { children: ReactNode }) {
   const idLastOpened = localStorage.getItem(LocalStorageKeys.IdLastOpenedGoal);
-  const initPage = idLastOpened ? "goal" : "main";
   const lastOpenedGoal =
     getGoals().find(({ id }) => idLastOpened?.includes(id)) || null;
+  const initPage = idLastOpened && lastOpenedGoal ? "goal" : "main";
 
   return (
     <CurrentPageContext.Provider value={useState<CurrentPage>(initPage)}>
