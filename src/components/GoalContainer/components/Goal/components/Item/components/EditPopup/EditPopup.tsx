@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import classes from "./EditPopup.module.scss";
 import { EditPopupProps } from "./EditPopup.types";
-
 import { Field } from "./components/Field";
-
 import { useDelete, useModifyGoal } from "./hooks";
+import { TextEditor } from "./components/TextEditor";
 
 export function EditPopup({
   id,
@@ -14,6 +13,7 @@ export function EditPopup({
   addSubGoalWithImportance,
   importance,
   progress,
+  notes,
   onClose,
 }: EditPopupProps) {
   const onDelete = useDelete(id);
@@ -28,6 +28,10 @@ export function EditPopup({
 
   return (
     <dialog className={classes.wrapper} open>
+      <TextEditor
+        initialValue={notes}
+        onBlur={modifyGoal({ type: "edit", field: "notes" })}
+      />
       <Field
         label="Name"
         buttonName="Edit"

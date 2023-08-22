@@ -4,16 +4,7 @@ import { EditPopup } from "./components/EditPopup";
 import { IdOpenedPopup } from "../../../../../../contexts/IdOpenedPopup";
 import { useContext } from "../../../../../../hooks/useContext";
 
-export function Item({
-  id,
-  name,
-  progress,
-  importance,
-  canChangeProgress,
-  canChangeImportance,
-  addSubGoalWithImportance,
-  onDbClick,
-}: ItemProps) {
+export function Item({ id, name, progress, onDbClick, ...params }: ItemProps) {
   const [idOpenedPopup, setIsPopupOpened] = useContext(IdOpenedPopup);
 
   return (
@@ -35,11 +26,8 @@ export function Item({
           id={id}
           name={name}
           progress={progress}
-          importance={importance}
-          canChangeProgress={canChangeProgress}
-          canChangeImportance={canChangeImportance}
-          addSubGoalWithImportance={addSubGoalWithImportance}
           onClose={() => setIsPopupOpened(null)}
+          {...params}
         />
       )}
     </>

@@ -3,5 +3,6 @@ export interface GoalType {
   name: string;
   importance?: number;
   progress?: number;
+  notes?: string;
   children?: GoalType[];
 }

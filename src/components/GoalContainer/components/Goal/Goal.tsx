@@ -22,20 +22,19 @@ export function Goal({ goal, notOneChild, setSelectedGoal }: GoalProps) {
   return (
     <div className={classes.line}>
       {goal.map((item) => {
-        const { id, name, children, progress, importance } = item;
+        const { id, children, importance, ...params } = item;
         const hasChildren = !!children?.length;
 
         return (
           <div key={id} style={{ width: `${importance}%` }}>
             <Item
               id={id}
-              name={name}
-              progress={progress}
               canChangeProgress={!hasChildren}
               addSubGoalWithImportance={hasChildren}
               importance={importance}
               canChangeImportance={notOneChild}
               {...(hasChildren && { onDbClick: () => setSelectedGoal(item) })}
+              {...params}
             />
 
             {!!hasChildren && (
