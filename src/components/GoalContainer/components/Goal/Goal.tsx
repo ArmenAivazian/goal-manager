@@ -3,7 +3,7 @@ import { GoalProps } from "./Goal.types";
 import { Item } from "./components/Item";
 
 export function Goal({ goal, notOneChild, setSelectedGoal }: GoalProps) {
-  if (!goal) return goal;
+  if (!goal) return <></>;
 
   if (!Array.isArray(goal)) {
     return (
