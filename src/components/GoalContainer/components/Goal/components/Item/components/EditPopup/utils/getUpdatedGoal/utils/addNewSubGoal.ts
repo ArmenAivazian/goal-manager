@@ -18,7 +18,7 @@ export function addNewSubGoal(prevGoal: GoalType, newValue: GoalNewValue) {
 
     return {
       ...child,
-      importance: childImportance - importance / count,
+      importance: Math.round(childImportance - importance / count),
     };
   });
 

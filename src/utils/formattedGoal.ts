@@ -23,7 +23,7 @@ function calcFields(data: GoalType): number {
 
       data.children = data.children.map((child) => ({
         ...child,
-        importance: Number(child.importance || 0) + forChild,
+        importance: Math.round(Number(child.importance || 0) + forChild),
       }));
     }
 

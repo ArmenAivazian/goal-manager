@@ -13,7 +13,7 @@ export function submitForm(
     if (clearAfterSubmit) setInputValue("");
 
     const value: GoalNewValue = withImportance
-      ? { importance: +rangeInputValue, name: inputValue }
+      ? { importance: Math.round(+rangeInputValue), name: inputValue }
       : inputValue;
 
     onSubmit(value);
