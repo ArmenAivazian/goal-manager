@@ -60,7 +60,7 @@ export function getChildren(
           return getUpdatedGoal(action, goal, id, value, minimalImportance);
         }
 
-        return getUpdatedGoal(action, goal, id, value, forChild);
+        return getUpdatedGoal(action, goal, id, value, Math.round(forChild));
       });
     }
   }

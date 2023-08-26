@@ -1,6 +1,7 @@
+import { getChildren } from ".";
 import { GoalType } from "../../../../../../../../../../../types/goal";
 import { getUniqueKey } from "../../../../../../../../../../../utils";
-import { GoalNewValue } from "../../../EditPopup.types";
+import { Action, GoalNewValue } from "../../../EditPopup.types";
 
 export function addNewSubGoal(prevGoal: GoalType, newValue: GoalNewValue) {
   const isNewValueString = typeof newValue === "string";
@@ -9,21 +10,15 @@ export function addNewSubGoal(prevGoal: GoalType, newValue: GoalNewValue) {
     ? { name: newValue, importance: 100 }
     : newValue;
 
-  const children = (prevGoal.children || []).map((child) => {
-    if (isNewValueString || !prevGoal.children) return child;
+  const children = [...(prevGoal.children || []), { id, ...value }];
+  const actionForChildren: Action = { type: "edit", field: "importance" };
+  const formattedChildren = getChildren(
+    true,
+    children,
+    actionForChildren,
+    id,
+    String(value.importance)
+  );
 
-    const importance = newValue.importance;
-    const childImportance = child.importance || 100;
-    const count = prevGoal.children.length;
-
-    return {
-      ...child,
-      importance: Math.round(childImportance - importance / count),
-    };
-  });
-
-  return {
-    ...prevGoal,
-    children: [...children, { id, ...value }],
-  };
+  return { ...prevGoal, children: formattedChildren };
 }
