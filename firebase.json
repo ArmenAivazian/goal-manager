@@ -1,0 +1,6 @@
+{
+  "hosting": {
+    "site": "goal-manager",
+    "public": "dist"
+  }
+}
