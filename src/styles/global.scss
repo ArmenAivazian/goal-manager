@@ -4,9 +4,9 @@
   line-height: 1.1;
   font-weight: 400;
 
-  color-scheme: light dark;
-  // color: rgba(255, 255, 255, 0.87);
-  // background-color: #242424;
+  // color-scheme: light dark;
+  color: $color-text;
+  background-color: $color-bg-1;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -33,7 +33,7 @@ a {
   text-decoration: inherit;
 
   &:hover {
-    color: #535bf2;
+    color: #747bff;
   }
 }
 
@@ -53,6 +53,18 @@ button {
   cursor: pointer;
   transition: color 0.2s ease 0s;
   min-height: $input-height;
+  background-color: #fff;
+  color: #333;
+
+  &:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
 }
 
 input {
@@ -119,28 +131,13 @@ input {
   }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: $color-text;
-    background-color: $color-bg-1;
-  }
+// @media (prefers-color-scheme: light) {
+//   :root {
+//   }
 
-  a:hover {
-    color: #747bff;
-  }
+//   a:hover {
+//   }
 
-  button {
-    background-color: #fff;
-    color: #333;
-
-    &:hover {
-      background-color: #000;
-      color: #fff;
-    }
-
-    &:focus,
-    &:focus-visible {
-      outline: 4px auto -webkit-focus-ring-color;
-    }
-  }
-}
+//   button {
+//   }
+// }
