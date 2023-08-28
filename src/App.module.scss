@@ -1,0 +1,11 @@
+.wrapper {
+    overflow: hidden;
+}
+
+.inner-wrapper {
+    margin: 0 -2px;
+
+    &.with-padding {
+        padding-bottom: $popup-height;
+    }
+}

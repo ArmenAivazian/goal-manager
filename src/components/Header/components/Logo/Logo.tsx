@@ -1,7 +1,6 @@
 import classes from "./Logo.module.scss";
 import { useContext } from "../../../../hooks";
 import { CurrentPageContext } from "../../../../contexts/CurrentPage";
-import { getImgSrc } from "./utils";
 
 export function Logo() {
   const [currentPage, setCurrentPage] = useContext(CurrentPageContext);
@@ -14,7 +13,7 @@ export function Logo() {
 
   return (
     <button onClick={handleLogoClick} className={classes.wrapper}>
-      <img src={getImgSrc(currentPage)} className={classes.logo} alt="Logo" />
+      {currentPage === "main" ? "Goal." : "List."}
     </button>
   );
 }

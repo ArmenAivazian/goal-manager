@@ -1,21 +1,22 @@
 import { GoalNewValue } from "../../../EditPopup.types";
 
 export function submitForm(
-  inputValue: string,
-  rangeInputValue: string,
   onSubmit: (value: GoalNewValue) => void,
   setInputValue: (value: string) => void,
   withImportance?: boolean,
   clearAfterSubmit?: boolean
 ) {
-  return (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  return (inputValue: string, rangeInputValue: string) => {
     if (clearAfterSubmit) setInputValue("");
 
     const value: GoalNewValue = withImportance
-      ? { importance: Math.round(+rangeInputValue), name: inputValue }
+      ? { importance: Number(rangeInputValue), name: inputValue }
       : inputValue;
 
-    onSubmit(value);
+    const isStrValueEmpty = typeof value === "string" && !value.trim();
+    const isObjValueEmpty = typeof value !== "string" && !value.name.trim();
+    if (isStrValueEmpty || isObjValueEmpty) return onSubmit("Goal");
+
+    onSubmit(value || "Unnamed Goal");
   };
 }

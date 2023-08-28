@@ -1,0 +1,11 @@
+@mixin dividing-line($type: 1) {
+    border-bottom: 2px solid $border-color;
+
+    @if $type == 1 {
+        background-color: $color-bg-2;
+    }
+
+    @if $type == 2 {
+        background-color: $color-bg-1;
+    }
+}

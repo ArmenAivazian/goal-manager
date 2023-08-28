@@ -1,16 +1,13 @@
-.line {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-    min-width: 100%;
-
-    &:not(:last-of-type) {
-        margin-bottom: 0.5em;
-    }
-}
-
 .label {
     min-width: max-content;
+    align-self: center;
+    font-size: 17px;
+    text-align: right;
+
+    &.start {
+        align-self: flex-start;
+        padding-top: 15px;
+    }
 }
 
 .percent {
@@ -19,7 +16,19 @@
     text-align: right;
 }
 
-.input {
-    height: 37px;
-    flex: 0 1 100%;
+.line {
+    display: grid;
+    align-items: center;
+    gap: 8px;
+    min-width: 100%;
+
+    &.with-button {
+        grid-template-columns: 1fr max-content;
+    }
+
+    &.levels {
+        .input {
+            grid-column: 1 / 3;
+        }
+    }
 }

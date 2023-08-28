@@ -1,0 +1,146 @@
+:root {
+  font-family: $text-font-family;
+
+  line-height: 1.1;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  // color: rgba(255, 255, 255, 0.87);
+  // background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+
+  &:hover {
+    color: #535bf2;
+  }
+}
+
+h1 {
+  font-size: 52px;
+  line-height: 1.1;
+  font-family: $head-font-family;
+  font-weight: 700;
+}
+
+button {
+  box-sizing: border-box;
+  border: 3px solid $border-color;
+  padding: $input-horizontal-padding 15px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.2s ease 0s;
+  min-height: $input-height;
+}
+
+input {
+  box-sizing: border-box;
+  font-family: $text-font-family;
+  border: 3px solid $border-color;
+  font-size: 16px;
+  padding: $input-horizontal-padding;
+  min-height: $input-height;
+  max-width: 100%;
+  width: 100%;
+
+  &[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: $color-bg-2;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+
+      &::-webkit-slider-thumb {
+        border: 1px solid $border-color;
+        outline: 1px solid $border-color;
+      }
+
+      &::-moz-range-thumb {
+        border: 1px solid $border-color;
+        outline: 1px solid $border-color;
+      }
+    }
+
+    &::-webkit-slider-runnable-track {
+      background-color: $border-color;
+      border-radius: 0;
+      height: 0.25rem;
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      margin-top: -14px;
+
+      background-color: $border-color;
+      height: 2rem;
+      width: 0.25rem;
+    }
+
+    &::-moz-range-track {
+      background-color: $border-color;
+      border-radius: 0;
+      height: 0.5rem;
+    }
+
+    &::-moz-range-thumb {
+      border: none; /*Removes extra border that FF applies*/
+      border-radius: 0; /*Removes default border-radius that FF applies*/
+
+      /*custom styles*/
+      background-color: $border-color;
+      height: 2rem;
+      width: 0.25rem;
+    }
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: $color-text;
+    background-color: $color-bg-1;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #fff;
+    color: #333;
+
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: 4px auto -webkit-focus-ring-color;
+    }
+  }
+}

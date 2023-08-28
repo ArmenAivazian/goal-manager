@@ -3,6 +3,7 @@ import classes from "./Item.module.scss";
 import { EditPopup } from "./components/EditPopup";
 import { IdOpenedPopup } from "../../../../../../contexts/IdOpenedPopup";
 import { useContext } from "../../../../../../hooks/useContext";
+import { getColorClass } from "./utils";
 
 export function Item({ id, name, progress, onDbClick, ...params }: ItemProps) {
   const [idOpenedPopup, setIsPopupOpened] = useContext(IdOpenedPopup);
@@ -14,9 +15,9 @@ export function Item({ id, name, progress, onDbClick, ...params }: ItemProps) {
         onDoubleClick={onDbClick}
         onClick={() => setIsPopupOpened(id)}
       >
-        {name}
+        <span className={classes.text}>{name}</span>
         <span
-          className={classes.progress}
+          className={`${classes.progress} ${classes[getColorClass(progress)]}`}
           {...(progress && { style: { width: `${progress}%` } })}
         />
       </div>

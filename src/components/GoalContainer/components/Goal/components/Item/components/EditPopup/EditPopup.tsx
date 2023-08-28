@@ -30,39 +30,39 @@ export function EditPopup({
     <dialog className={classes.wrapper} open>
       <TextEditor
         initialValue={notes}
-        onBlur={modifyGoal({ type: "edit", field: "notes" })}
+        onChange={modifyGoal({ type: "edit", field: "notes" })}
       />
-      <Field
-        label="Name"
-        buttonName="Edit"
-        initValue={name}
-        onSubmit={modifyGoal({ type: "edit", field: "name" })}
-      />
-      {canChangeProgress && (
+      <div className={classes.fields}>
         <Field
-          label="Progress"
-          buttonName="Change"
-          type="range"
-          onSubmit={modifyGoal({ type: "edit", field: "progress" })}
-          initValue={`${progress || 0}`}
+          label="Name"
+          initValue={name}
+          onSubmit={modifyGoal({ type: "edit", field: "name" })}
         />
-      )}
-      {canChangeImportance && (
         <Field
-          label="Importance"
-          buttonName="Change"
-          initValue={`${importance || 0}`}
-          onSubmit={modifyGoal({ type: "edit", field: "importance" })}
-          type="range"
+          label="Add sub-goal"
+          buttonName="Add"
+          onSubmit={modifyGoal("add")}
+          clearAfterSubmit
+          withImportance={addSubGoalWithImportance}
+          changeOnlyAfterSubmit
         />
-      )}
-      <Field
-        label="Add sub-goal"
-        buttonName="Add"
-        onSubmit={modifyGoal("add")}
-        clearAfterSubmit
-        withImportance={addSubGoalWithImportance}
-      />
+        {canChangeProgress && (
+          <Field
+            label="Progress"
+            type="range"
+            onSubmit={modifyGoal({ type: "edit", field: "progress" })}
+            initValue={`${progress || 0}`}
+          />
+        )}
+        {canChangeImportance && (
+          <Field
+            label="Importance"
+            initValue={`${importance || 0}`}
+            onSubmit={modifyGoal({ type: "edit", field: "importance" })}
+            type="range"
+          />
+        )}
+      </div>
       <button className={classes.button} onClick={onDelete}>
         Delete
       </button>

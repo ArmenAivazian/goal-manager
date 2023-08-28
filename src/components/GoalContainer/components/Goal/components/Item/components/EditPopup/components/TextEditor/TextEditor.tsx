@@ -1,10 +1,9 @@
 import { useState } from "react";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import classes from "./TextEditor.module.scss";
 import { TextEditorProps } from "./TextEditor.types";
 
-export function TextEditor({ initialValue, onBlur }: TextEditorProps) {
+export function TextEditor({ initialValue, onChange }: TextEditorProps) {
   const [value, setValue] = useState(initialValue);
 
   return (
@@ -12,8 +11,10 @@ export function TextEditor({ initialValue, onBlur }: TextEditorProps) {
       <ReactQuill
         theme="snow"
         value={value}
-        onChange={setValue}
-        onBlur={() => onBlur(value || "")}
+        onChange={(value) => {
+          setValue(value);
+          onChange(value);
+        }}
       />
     </div>
   );

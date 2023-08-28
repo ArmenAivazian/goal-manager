@@ -1,19 +1,51 @@
 .header {
+    flex: 0 1 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 0.5em;
+
+    &.centered {
+        margin: auto 0;
+
+        .input {
+            font-size: 42px;
+            padding: 10px 20px;
+            border-left: none;
+            border-right: none;
+        }
+    }
+
+    &.top {
+        @include dividing-line;
+        padding: $viewport-padding;
+    }
 }
 
-.create {
-    display: flex;
-    align-items: center;
+.form {
     flex: 0 1 100%;
+}
+
+.placeholder {
+    animation: bounce 2s cubic-bezier(0.5, -0.3, 0.1, 1.5) infinite forwards;
+    padding: $viewport-padding;
+    margin-bottom: 0;
 }
 
 .input {
-    height: 37px;
-    font-size: 16px;
-    margin-right: 0.5em;
     flex: 0 1 100%;
+}
+
+@keyframes bounce {
+    25% {
+        transform: translateY(-20%);
+    }
+
+    40% {
+        transform: translateY(-3%);
+    }
+
+    0%,
+    60%,
+    to {
+        transform: translateY(0);
+    }
 }

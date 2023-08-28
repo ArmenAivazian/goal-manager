@@ -9,6 +9,7 @@ export function Field({
   initValue,
   clearAfterSubmit,
   withImportance,
+  changeOnlyAfterSubmit,
   type = "text",
   onSubmit,
 }: FieldProps) {
@@ -18,41 +19,50 @@ export function Field({
   const isTypeRange = type === "range";
   const shownPercent = isTypeRange || withImportance;
   const percent = withImportance ? rangeInputValue : inputValue;
+  const submitHandler = submitForm(
+    onSubmit,
+    setInputValue,
+    withImportance,
+    clearAfterSubmit
+  );
 
   return (
-    <form
-      className={classes.line}
-      onSubmit={submitForm(
-        inputValue,
-        rangeInputValue,
-        onSubmit,
-        setInputValue,
-        withImportance,
-        clearAfterSubmit
-      )}
-    >
-      <label className={classes.label}>
+    <>
+      <label className={`${classes.label} ${withImportance && classes.start}`}>
         {label}
         {shownPercent && (
           <span className={classes.percent}>{`(${percent}%)`}</span>
         )}
         :
       </label>
-      <input
-        type={type}
-        className={classes.input}
-        value={inputValue}
-        onChange={({ target: { value } }) => setInputValue(value)}
-      />
-      {withImportance && (
+
+      <div
+        className={`${classes.line} ${
+          !!changeOnlyAfterSubmit && classes["with-button"]
+        } ${withImportance && classes.levels}`}
+      >
         <input
-          type="range"
+          type={type}
+          value={inputValue}
           className={classes.input}
-          value={rangeInputValue}
-          onChange={({ target: { value } }) => setRangeInputValue(value)}
+          onChange={({ target: { value } }) => {
+            setInputValue(value);
+            if (!changeOnlyAfterSubmit) submitHandler(value, rangeInputValue);
+          }}
         />
-      )}
-      <button>{buttonName}</button>
-    </form>
+        {withImportance && (
+          <input
+            type="range"
+            value={rangeInputValue}
+            onChange={({ target: { value } }) => setRangeInputValue(value)}
+          />
+        )}
+        {changeOnlyAfterSubmit && (
+          <button onClick={() => submitHandler(inputValue, rangeInputValue)}>
+            {buttonName}
+          </button>
+        )}
+      </div>
+    </>
   );
 }

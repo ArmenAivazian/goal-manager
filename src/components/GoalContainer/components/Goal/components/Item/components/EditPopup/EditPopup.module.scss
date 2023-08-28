@@ -1,18 +1,36 @@
+$gap: 20px;
+
 .wrapper {
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 0;
     min-width: 100vw;
-    height: 50%;
+    max-height: $popup-height;
     overflow-y: scroll;
     overflow-x: hidden;
     border-width: 0;
-    border-radius: 15px 15px 0 0;
+    border-top: 3px solid $border-color;
+    border-right: 3px solid $border-color;
+    border-left: 3px solid $border-color;
     box-sizing: border-box;
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: $color-bg-1;
+    z-index: 999;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $gap;
 }
 
 .button {
-    margin: 2em auto 0;
     display: block;
+    flex: 0 1 100%;
+    background-color: $color-bg-1;
+    align-self: flex-end;
+}
+
+.fields {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px;
+    align-self: flex-start;
+    flex: 0 1 calc(50% - calc($gap / 2));
 }
