@@ -37,6 +37,8 @@
 - Better Text Editor
 - Add an adaptive (mobile version)
 - Add a dark theme
+- Link one goal to another
+- Add the ability to sort goals in the general list by category
 
 ### Tech Improvements
 
