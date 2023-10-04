@@ -9,6 +9,8 @@
     cursor: pointer;
     border: 2px solid $border-color;
     font-size: 20px;
+    box-sizing: border-box;
+    min-height: 46px;
 
     &:not(:last-of-type) {
         margin-bottom: 4px;
