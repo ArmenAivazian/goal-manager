@@ -13,7 +13,7 @@ export function Item({ id, name, progress, onDbClick, ...params }: ItemProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (Number(ref?.current?.offsetWidth) < 40) setIsTextVisible(false);
+    if (Number(ref?.current?.offsetWidth) < 45) setIsTextVisible(false);
   }, [params.importance]);
 
   return (
