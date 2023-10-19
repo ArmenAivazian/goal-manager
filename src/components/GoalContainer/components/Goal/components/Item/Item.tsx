@@ -16,10 +16,12 @@ export function Item({ id, name, progress, onDbClick, ...params }: ItemProps) {
     if (Number(ref?.current?.offsetWidth) < 50) setIsTextVisible(false);
   }, [params.importance]);
 
+  const isActive = idOpenedPopup === id;
+
   return (
     <>
       <div
-        className={classes.wrapper}
+        className={`${classes.wrapper}${isActive ? ` ${classes.active}` : ""}`}
         onDoubleClick={onDbClick}
         onClick={() => setIsPopupOpened(id)}
         ref={ref}
@@ -31,7 +33,7 @@ export function Item({ id, name, progress, onDbClick, ...params }: ItemProps) {
         />
       </div>
 
-      {idOpenedPopup === id && (
+      {isActive && (
         <EditPopup
           id={id}
           name={name}

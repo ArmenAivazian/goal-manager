@@ -39,7 +39,8 @@
 - Add a dark theme
 - Link one goal to another
 - Add the ability to sort goals in the general list by category
-- Add the ability to pin the importance
+- Add the ability to pin the importance 
+- Add the ability to change the order of goals
 
 ### Tech Improvements
 
