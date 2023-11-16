@@ -37,7 +37,7 @@ export function Goal({ goal, notOneChild, setSelectedGoal }: GoalProps) {
               {...params}
             />
 
-            {!!hasChildren && (
+            {hasChildren && (
               <Goal
                 goal={children}
                 notOneChild={children?.length !== 1}

@@ -3,7 +3,7 @@ import classes from "./Item.module.scss";
 import { EditPopup } from "./components/EditPopup";
 import { IdOpenedPopup } from "../../../../../../contexts/IdOpenedPopup";
 import { useContext } from "../../../../../../hooks/useContext";
-import { getColorClass } from "./utils";
+import { getClasses, getColorClass } from "./utils";
 import { useEffect, useRef, useState } from "react";
 
 export function Item({ id, name, progress, onDbClick, ...params }: ItemProps) {
@@ -21,7 +21,7 @@ export function Item({ id, name, progress, onDbClick, ...params }: ItemProps) {
   return (
     <>
       <div
-        className={`${classes.wrapper}${isActive ? ` ${classes.active}` : ""}`}
+        className={getClasses(isActive)}
         onDoubleClick={onDbClick}
         onClick={() => setIsPopupOpened(id)}
         ref={ref}

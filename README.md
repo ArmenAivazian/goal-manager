@@ -33,17 +33,21 @@
 
 ### Features
 
+- Drag and Drop sub-goals
 - Shortcuts (is-hotkey library)
 - Better Text Editor
 - Add an adaptive (mobile version)
 - Add a dark theme
 - Link one goal to another
-- Add the ability to sort goals in the general list by category
-- Add the ability to pin the importance 
-- Add the ability to change the order of goals
+- Sort goals in the general list by category
+- Pin the importance 
+- Change the order of goals
+- Add a color for tree
+- Sharing goals
 
 ### Tech Improvements
 
+- Change Data Structure
 - Improve performance for opening popup
 - Clean up text.editor (make only one theme)
 - Add italic style for Text Editor
