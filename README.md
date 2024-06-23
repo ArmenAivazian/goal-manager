@@ -33,6 +33,7 @@
 
 ### Features
 
+- Add default percentage for sub-goals by another sub-goals
 - Drag and Drop sub-goals
 - Shortcuts (is-hotkey library)
 - Better Text Editor

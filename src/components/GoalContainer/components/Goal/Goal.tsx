@@ -19,14 +19,20 @@ export function Goal({ goal, notOneChild, setSelectedGoal }: GoalProps) {
     );
   }
 
+  const gap = 2;
+  const gapCoefficient = ((goal.length - 1) * gap) / goal.length;
+
   return (
-    <div className={classes.line}>
+    <div className={classes.line} style={{ gap }}>
       {goal.map((item) => {
         const { id, children, importance, ...params } = item;
         const hasChildren = !!children?.length;
 
         return (
-          <div key={id} style={{ width: `${importance}%` }}>
+          <div
+            key={id}
+            style={{ width: `calc(${importance}% - ${gapCoefficient}px)` }}
+          >
             <Item
               id={id}
               canChangeProgress={!hasChildren}
