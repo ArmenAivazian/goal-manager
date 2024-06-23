@@ -37,7 +37,8 @@ export function GoalsList({ setSelectedGoal }: GoalsListProps) {
             key={goal.id}
             onClick={() => handleGoalButtonClick(fullData)}
           >
-            {name}&nbsp;&nbsp;{percents}
+            <span className={classes.name}>{name}</span>
+            <span>{percents}</span>
           </button>
         );
       })}

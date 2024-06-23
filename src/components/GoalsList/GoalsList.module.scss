@@ -3,13 +3,22 @@
 }
 
 .button {
-    display: block;
+    display: flex;
+    justify-content: space-between;
     max-width: 100%;
     width: 100%;
     font-family: $head-font-family;
     font-size: 18px;
+    gap: 40px;
+    text-align: left;
 
     &:not(:last-of-type) {
         margin-bottom: 0.5em;
     }
+}
+
+.name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
