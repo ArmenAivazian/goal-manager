@@ -3,7 +3,7 @@ import { GoalType } from "../../../../../../../../types/goal";
 export interface EditPopupProps extends GoalType {
   canChangeProgress?: boolean;
   canChangeImportance?: boolean;
-  addSubGoalWithImportance?: boolean;
+  childInitImportance?: string;
   onClose: () => void;
 }
 

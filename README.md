@@ -33,7 +33,6 @@
 
 ### Features
 
-- Add default percentage for sub-goals by another sub-goals
 - Drag and Drop sub-goals
 - Shortcuts (is-hotkey library)
 - Better Text Editor
@@ -57,3 +56,7 @@
 - Change the folder system, with one index per folder
 - Add Unit tests
 - Add CI/CD
+
+## ✅ Done
+
+- Add default percentage for sub-goals by another sub-goals

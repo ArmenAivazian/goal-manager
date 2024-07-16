@@ -10,7 +10,7 @@ export function EditPopup({
   name,
   canChangeProgress,
   canChangeImportance,
-  addSubGoalWithImportance,
+  childInitImportance,
   importance,
   progress,
   notes,
@@ -43,8 +43,8 @@ export function EditPopup({
           buttonName="Add"
           onSubmit={modifyGoal("add")}
           clearAfterSubmit
-          withImportance={addSubGoalWithImportance}
           changeOnlyAfterSubmit
+          {...(childInitImportance && { importance: childInitImportance })}
         />
         {canChangeProgress && (
           <Field

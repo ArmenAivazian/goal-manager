@@ -1,14 +1,19 @@
 import classes from "./Goal.module.scss";
 import { GoalProps } from "./Goal.types";
 import { Item } from "./components/Item";
+import { getValueForChildInitImportance } from "./utils";
 
 export function Goal({ goal, notOneChild, setSelectedGoal }: GoalProps) {
   if (!goal) return <></>;
 
   if (!Array.isArray(goal)) {
+    const childInitImportance = getValueForChildInitImportance(
+      goal?.children?.length
+    );
+
     return (
       <>
-        <Item {...goal} addSubGoalWithImportance />
+        <Item {...goal} {...(childInitImportance && { childInitImportance })} />
 
         <Goal
           goal={goal.children}
@@ -27,6 +32,9 @@ export function Goal({ goal, notOneChild, setSelectedGoal }: GoalProps) {
       {goal.map((item) => {
         const { id, children, importance, ...params } = item;
         const hasChildren = !!children?.length;
+        const childInitImportance = getValueForChildInitImportance(
+          children?.length
+        );
 
         return (
           <div
@@ -36,9 +44,9 @@ export function Goal({ goal, notOneChild, setSelectedGoal }: GoalProps) {
             <Item
               id={id}
               canChangeProgress={!hasChildren}
-              addSubGoalWithImportance={hasChildren}
               importance={importance}
               canChangeImportance={notOneChild}
+              {...(childInitImportance && { childInitImportance })}
               {...(hasChildren && { onDbClick: () => setSelectedGoal(item) })}
               {...params}
             />

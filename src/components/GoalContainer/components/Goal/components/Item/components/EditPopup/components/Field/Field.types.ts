@@ -6,7 +6,7 @@ export interface FieldProps {
   type?: "text" | "range";
   initValue?: string;
   clearAfterSubmit?: boolean;
-  withImportance?: boolean;
+  importance?: string;
   changeOnlyAfterSubmit?: boolean;
   onSubmit: (value: GoalNewValue) => void;
 }

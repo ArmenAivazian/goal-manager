@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./Field.module.scss";
 import { FieldProps } from "./Field.types";
 import { submitForm } from "./utils";
@@ -8,14 +8,15 @@ export function Field({
   buttonName,
   initValue,
   clearAfterSubmit,
-  withImportance,
+  importance,
   changeOnlyAfterSubmit,
   type = "text",
   onSubmit,
 }: FieldProps) {
   const [inputValue, setInputValue] = useState(initValue || "");
-  const [rangeInputValue, setRangeInputValue] = useState("50");
+  const [rangeInputValue, setRangeInputValue] = useState(importance || "50");
 
+  const withImportance = Boolean(importance);
   const isTypeRange = type === "range";
   const shownPercent = isTypeRange || withImportance;
   const percent = withImportance ? rangeInputValue : inputValue;
@@ -25,6 +26,10 @@ export function Field({
     withImportance,
     clearAfterSubmit
   );
+
+  useEffect(() => {
+    importance && setRangeInputValue(importance);
+  }, [importance]);
 
   return (
     <>
