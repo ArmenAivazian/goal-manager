@@ -6,9 +6,8 @@ export function Logo() {
   const [currentPage, setCurrentPage] = useContext(CurrentPageContext);
 
   function handleLogoClick() {
-    if (currentPage === "main") setCurrentPage("goal");
-
-    if (currentPage === "goal") setCurrentPage("main");
+    if (currentPage !== "main") setCurrentPage("main");
+    else setCurrentPage("goal");
   }
 
   return (

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import classes from "./EditPopup.module.scss";
 import { EditPopupProps } from "./EditPopup.types";
 import { Field } from "./components/Field";
-import { useDelete, useModifyGoal } from "./hooks";
+import { useRemove, useModifyGoal } from "./hooks";
 import { TextEditor } from "./components/TextEditor";
 
 export function EditPopup({
@@ -16,7 +16,7 @@ export function EditPopup({
   notes,
   onClose,
 }: EditPopupProps) {
-  const onDelete = useDelete(id);
+  const onRemove = useRemove(id);
   const modifyGoal = useModifyGoal(id);
 
   useEffect(() => {
@@ -63,9 +63,17 @@ export function EditPopup({
           />
         )}
       </div>
-      <button className={classes.button} onClick={onDelete}>
-        Delete
-      </button>
+      <div className={classes.buttons}>
+        <button className={classes.button} onClick={() => onRemove("reject")}>
+          Reject
+        </button>
+        <button
+          className={`${classes.button} danger`}
+          onClick={() => onRemove("delete")}
+        >
+          Delete
+        </button>
+      </div>
     </dialog>
   );
 }

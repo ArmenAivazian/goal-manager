@@ -8,6 +8,7 @@ import { CurrentPageContext } from "./contexts/CurrentPage";
 import { getGoals } from "./utils";
 import classes from "./App.module.scss";
 import { IdOpenedPopup } from "./contexts/IdOpenedPopup";
+import { RejectList } from "./pages";
 
 function App() {
   const currentPage = useGetContext(CurrentPageContext);
@@ -42,6 +43,8 @@ function App() {
           </div>
         </div>
       )}
+
+      {currentPage === "reject" && <RejectList />}
     </>
   );
 }

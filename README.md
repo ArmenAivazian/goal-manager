@@ -44,6 +44,8 @@
 - Change the order of goals
 - Add a color for tree
 - Sharing goals
+- Add reason popup for Reject
+- Make Reject List interactive
 
 ### Tech Improvements
 
@@ -56,6 +58,7 @@
 - Change the folder system, with one index per folder
 - Add Unit tests
 - Add CI/CD
+- Change Page name string to TS enum
 
 ### Ideas
 
@@ -63,6 +66,8 @@
     - a button is needed to mark a goal as a blocker that will be added to this page
 - Remove the "importance" field, or at least put it as an additional tagline 
 - Divide the progress into conditional points, something like: 1. ToDo. 2. In Progress. 3. Almost finished. 4. Finished
+- Change Goal to Direction and Sub-Goal to Goal
+- Change Percentage Goal to complet/all progress
 
 ### Bugs
 
@@ -73,3 +78,4 @@
 Features:
 
 - Add default percentage for sub-goals by another sub-goal
+- Add oportunity to add Reject goals or sub-goals

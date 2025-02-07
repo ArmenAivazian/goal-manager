@@ -6,6 +6,7 @@ import { GoalContext } from "../../contexts/Goal";
 import { CurrentPageContext } from "../../contexts/CurrentPage";
 import { useGetContext } from "../../hooks/useContext";
 import { useCreateGoal } from "./hooks";
+import { RejectButton } from "./components/RejectButton";
 
 export function Header({
   isHaveSelectedGoal,
@@ -46,6 +47,7 @@ export function Header({
           />
         </form>
       )}
+      {currentPage !== "reject" && <RejectButton />}
     </header>
   );
 }

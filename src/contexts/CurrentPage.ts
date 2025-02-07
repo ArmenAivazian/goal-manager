@@ -1,7 +1,7 @@
 import { createContext } from "use-context-selector";
 import { Dispatch } from "react";
 
-export type CurrentPage = "main" | "goal";
+export type CurrentPage = "main" | "goal" | "reject";
 type DispatchPage = Dispatch<React.SetStateAction<CurrentPage>>;
 
 export const CurrentPageContext = createContext<[CurrentPage, DispatchPage]>([

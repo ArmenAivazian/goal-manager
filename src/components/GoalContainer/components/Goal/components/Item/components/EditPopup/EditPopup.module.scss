@@ -20,17 +20,23 @@ $gap: 20px;
     gap: $gap;
 }
 
-.button {
-    display: block;
-    flex: 0 1 100%;
-    background-color: $color-bg-1;
-    align-self: flex-end;
-}
-
 .fields {
     display: grid;
     grid-template-columns: max-content 1fr;
     gap: 10px;
     align-self: flex-start;
     flex: 0 1 calc(50% - calc($gap / 2));
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    flex: 0 1 100%;
+}
+
+.button {
+    display: block;
+    flex: 0 1 49%;
+    background-color: $color-bg-1;
+    align-self: flex-end;
 }
