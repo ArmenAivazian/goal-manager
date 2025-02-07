@@ -58,7 +58,7 @@
 - Change the folder system, with one index per folder
 - Add Unit tests
 - Add CI/CD
-- Change Page name string to TS enum
+- Create wrapper for Button
 
 ### Ideas
 
@@ -79,3 +79,7 @@ Features:
 
 - Add default percentage for sub-goals by another sub-goal
 - Add oportunity to add Reject goals or sub-goals
+
+Tech Improvements: 
+
+- Change Page name string to TS enum

@@ -5,6 +5,7 @@ import { deleteGoal } from "../../../../../../../../../utils/deleteGoal";
 import { updateGoal } from "../utils";
 import { CurrentPageContext } from "../../../../../../../../../contexts/CurrentPage";
 import { LocalStorageKeys } from "../../../../../../../../../types/localStorageKeys";
+import { Routes } from "../../../../../../../../../types/routes";
 
 export function useRemove(id: string) {
   const setCurrentPage = useSetContext(CurrentPageContext);
@@ -30,7 +31,7 @@ export function useRemove(id: string) {
 
       const newGoal = deleteGoal(goal, prev);
 
-      if (!newGoal) setCurrentPage("main");
+      if (!newGoal) setCurrentPage(Routes.Main);
 
       const formattedNewGoal = formattedGoal(newGoal);
 

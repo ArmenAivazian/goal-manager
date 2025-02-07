@@ -9,6 +9,7 @@ import { getGoals } from "./utils";
 import classes from "./App.module.scss";
 import { IdOpenedPopup } from "./contexts/IdOpenedPopup";
 import { RejectList } from "./pages";
+import { Routes } from "./types/routes";
 
 function App() {
   const currentPage = useGetContext(CurrentPageContext);
@@ -17,7 +18,7 @@ function App() {
   const [selectedGoal, setSelectedGoal] = useState<GoalType | null>(null);
 
   const isGoalsListEmpty = !getGoals().length;
-  const shownGoalsList = currentPage === "main" && !isGoalsListEmpty;
+  const shownGoalsList = currentPage === Routes.Main && !isGoalsListEmpty;
 
   return (
     <>
@@ -29,7 +30,7 @@ function App() {
 
       {shownGoalsList && <GoalsList setSelectedGoal={setSelectedGoal} />}
 
-      {currentPage === "goal" && (
+      {currentPage === Routes.Goal && (
         <div className={classes.wrapper}>
           <div
             className={`${classes["inner-wrapper"]} ${
@@ -44,7 +45,7 @@ function App() {
         </div>
       )}
 
-      {currentPage === "reject" && <RejectList />}
+      {currentPage === Routes.Reject && <RejectList />}
     </>
   );
 }

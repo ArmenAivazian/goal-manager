@@ -4,6 +4,7 @@ import { useSetContext } from "../../../hooks/useContext";
 import { getGoals, getUniqueKey, setGoalsToLS } from "../../../utils";
 import { CurrentPageContext } from "../../../contexts/CurrentPage";
 import { LocalStorageKeys } from "../../../types/localStorageKeys";
+import { Routes } from "../../../types/routes";
 
 export function useCreateGoal(
   inputValue: string,
@@ -18,7 +19,7 @@ export function useCreateGoal(
     e.preventDefault();
     setGoalsToLS([...getGoals(), newGoal]);
     setGoal(newGoal);
-    setCurrentPage("goal");
+    setCurrentPage(Routes.Goal);
     setInputValue("");
     localStorage.setItem(
       LocalStorageKeys.IdLastOpenedGoal,

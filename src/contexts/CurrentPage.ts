@@ -1,10 +1,10 @@
 import { createContext } from "use-context-selector";
 import { Dispatch } from "react";
+import { Routes } from "../types/routes";
 
-export type CurrentPage = "main" | "goal" | "reject";
-type DispatchPage = Dispatch<React.SetStateAction<CurrentPage>>;
+type DispatchPage = Dispatch<React.SetStateAction<Routes>>;
 
-export const CurrentPageContext = createContext<[CurrentPage, DispatchPage]>([
-  "main",
+export const CurrentPageContext = createContext<[Routes, DispatchPage]>([
+  Routes.Main,
   () => null,
 ]);

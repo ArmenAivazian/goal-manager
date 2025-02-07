@@ -6,6 +6,7 @@ import { GoalContext } from "../../contexts/Goal";
 import { useSetContext } from "../../hooks/useContext";
 import { CurrentPageContext } from "../../contexts/CurrentPage";
 import { LocalStorageKeys } from "../../types/localStorageKeys";
+import { Routes } from "../../types/routes";
 
 export function GoalsList({ setSelectedGoal }: GoalsListProps) {
   const setCurrentPage = useSetContext(CurrentPageContext);
@@ -14,7 +15,7 @@ export function GoalsList({ setSelectedGoal }: GoalsListProps) {
   function handleGoalButtonClick(goal: GoalType) {
     setGoal(goal);
     setSelectedGoal(null);
-    setCurrentPage("goal");
+    setCurrentPage(Routes.Goal);
     localStorage.setItem(
       LocalStorageKeys.IdLastOpenedGoal,
       JSON.stringify(goal.id)

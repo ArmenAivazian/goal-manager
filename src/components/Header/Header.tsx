@@ -7,6 +7,7 @@ import { CurrentPageContext } from "../../contexts/CurrentPage";
 import { useGetContext } from "../../hooks/useContext";
 import { useCreateGoal } from "./hooks";
 import { RejectButton } from "./components/RejectButton";
+import { Routes } from "../../types/routes";
 
 export function Header({
   isHaveSelectedGoal,
@@ -20,7 +21,7 @@ export function Header({
 
   const onCreate = useCreateGoal(inputValue, setInputValue);
 
-  const shownButtonBack = !!(isHaveSelectedGoal && currentPage === "goal");
+  const shownButtonBack = !!(isHaveSelectedGoal && currentPage === Routes.Goal);
 
   return (
     <header
@@ -30,7 +31,7 @@ export function Header({
     >
       {goal && <Logo />}
       {shownButtonBack && <button onClick={onBackButtonClick}>Back</button>}
-      {currentPage === "main" && (
+      {currentPage === Routes.Main && (
         <form className={classes.form} onSubmit={onCreate}>
           {isGoalsListEmpty && (
             <h1 className={classes.placeholder}>enter your first goal:</h1>
@@ -47,7 +48,7 @@ export function Header({
           />
         </form>
       )}
-      {currentPage !== "reject" && <RejectButton />}
+      {currentPage !== Routes.Reject && <RejectButton />}
     </header>
   );
 }

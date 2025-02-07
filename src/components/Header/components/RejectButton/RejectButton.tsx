@@ -1,5 +1,6 @@
 import { CurrentPageContext } from "../../../../contexts/CurrentPage";
 import { useSetContext } from "../../../../hooks/useContext";
+import { Routes } from "../../../../types/routes";
 import classes from "./RejectButton.module.scss";
 
 export function RejectButton() {
@@ -7,7 +8,7 @@ export function RejectButton() {
 
   return (
     <button
-      onClick={() => setCurrentPage("reject")}
+      onClick={() => setCurrentPage(Routes.Reject)}
       className={`${classes.button} danger`}
     >
       Reject List
