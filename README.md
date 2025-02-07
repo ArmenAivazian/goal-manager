@@ -83,3 +83,4 @@ Features:
 Tech Improvements: 
 
 - Change Page name string to TS enum
+- DependBot Updates (07/02/2025)
