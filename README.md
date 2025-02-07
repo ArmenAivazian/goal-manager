@@ -57,6 +57,19 @@
 - Add Unit tests
 - Add CI/CD
 
+### Ideas
+
+- Separate page with tasks by goal
+    - a button is needed to mark a goal as a blocker that will be added to this page
+- Remove the "importance" field, or at least put it as an additional tagline 
+- Divide the progress into conditional points, something like: 1. ToDo. 2. In Progress. 3. Almost finished. 4. Finished
+
+### Bugs
+
+- Unbroken string “breaks” the text editor
+
 ## ✅ Done
 
-- Add default percentage for sub-goals by another sub-goals
+Features:
+
+- Add default percentage for sub-goals by another sub-goal
